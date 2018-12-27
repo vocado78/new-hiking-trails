@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const combineLoaders = require('webpack-combine-loaders'); 
 const webpack = require('webpack');
 
 const config = {
@@ -18,7 +19,17 @@ const config = {
             	},
               {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                loader: combineLoaders([
+                  {
+                    loader: 'style-loader'
+                  }, {
+                    loader: 'css-loader',
+                    query: {
+                      modules: true,
+                      localIdentName: '[name]__[local]___[hash:base64:5]'
+                    }
+                  }
+                ])
               },
               {
                 test: /\.(png|svg|jpg|gif)$/,
