@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import styles from './styles.css';
+
 export default class RegionForm extends React.Component {
   constructor (props) {
     super(props);
@@ -18,9 +20,10 @@ export default class RegionForm extends React.Component {
 
   render() {
     return (
-      <form className="region-form">
+      <form className={styles.regionForm}>
         <label>Show me trails in</label>
-        <select value={this.state.region}
+        <select className={styles.select}
+            value={this.state.region}
             onChange={this.handleSelect}>
             <option value=''>Please select region</option>
             <option value='northern-norrland'>Northern Norrland</option>
@@ -30,7 +33,7 @@ export default class RegionForm extends React.Component {
             <option value='southern-gotaland'>Southern Götaland</option>
             <option value='all'>Show all</option>
         </select>
-        <Link className="region-btn"
+        <Link className={styles.button}
           to={{
             pathname: "/results",
             search: "?region=" + this.state.region

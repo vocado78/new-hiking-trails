@@ -1,0 +1,31 @@
+.regionForm {
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0;
+  background-color: #ffffff;
+  margin: -50px auto 0 auto;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+}
+
+.select {
+  padding: 10px;
+  width: 300px;
+  margin-left: 50px;
+  border-left: 1px solid #071702;
+  border-top: 1px solid #071702;
+  border-bottom: 1px solid #071702;
+  border-right: none;
+  border-radius: 4px 0  0 4px;
+}
+
+.button {
+  padding: 10.65px;
+  background-color: #284d00;
+  color: #ffffff;
+  border-radius: 0 4px 4px 0;
+}
