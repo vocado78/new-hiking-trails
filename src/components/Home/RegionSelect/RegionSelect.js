@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
 
-export default class RegionForm extends React.Component {
+export default class RegionSelect extends React.Component {
   constructor (props) {
     super(props);
     this.state = {

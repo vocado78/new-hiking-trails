@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-import RegionForm from './RegionSelect/RegionSelect';
+import RegionSelect from './RegionSelect/RegionSelect';
 import RegionMap from './RegionMap/RegionMap';
 
 const Presentation = () => {
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
     return (
       <div>
         <div className={styles.banner}></div>
-        <RegionForm />
+        <RegionSelect />
         <div className={styles.container}>
           <Presentation />
           <RegionMap />
