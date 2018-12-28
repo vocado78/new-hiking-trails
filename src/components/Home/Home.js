@@ -7,8 +7,8 @@ import RegionMap from './RegionMap/RegionMap';
 const Presentation = () => {
   const header = "LOOKING FOR A HIKING TRAIL IN SWEDEN?";
   const intro =
-  "Look no more. Simply get started by selecting the region you are " +
-  " interested in to find the perfect hike for you.";
+     "Look no more. Simply get started by selecting the region you are " +
+     " interested in to find the perfect hike for you.";
   const paraOne =
   "Sweden offers an extensive number of hiking trails in a diverse landscape " +
   "ranging from beautiful coasts to deep, quiet forests to remote mountains " +
@@ -22,18 +22,18 @@ const Presentation = () => {
   "different regions.";
 
   return (
-    <div className={styles.presentation}>
+    <div>
     <h1 style={{
-      marginBottom:"1.875em",
-      color:"#284d00",
-      letterSpacing:"0.05em"}}>{header}</h1>
-    <p style={{fontWeight: "bold"}}>{intro}</p>
-    <p>{paraOne}</p>
+          marginBottom:"1em",
+          color:"#ffffff",
+          letterSpacing:"0.05em"}}>{header}</h1>
+    <p style={{fontWeight: "bold", color:"#ffffff"}}>{intro}</p>
+    {/* <p>{paraOne}</p>
     <p>{paraTwo}</p>
     <p style={{
       fontSize:"0.78em",
       textAlign:"right",
-      marginTop:"4em"}}>{tip}</p>
+      marginTop:"4em"}}>{tip}</p> */}
     </div>
   );
 }
@@ -42,11 +42,16 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <div className={styles.banner}></div>
-        <RegionSelect />
-        <div className={styles.container}>
-          <Presentation />
-          <RegionMap />
+        <div className={styles.banner}>
+          <div className={styles.container}>
+            <div className={styles.presentation}>
+              <Presentation />
+              <RegionSelect />
+            </div>
+            <div className={styles.region}>
+              <RegionMap />
+            </div>
+          </div>
         </div>
       </div>
     );

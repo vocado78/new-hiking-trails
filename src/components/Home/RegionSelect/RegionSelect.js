@@ -20,8 +20,8 @@ export default class RegionSelect extends React.Component {
 
   render() {
     return (
-      <form className={styles.regionForm}>
-        <label>Show me trails in</label>
+      <form className={styles.form}>
+        {/* <label>Show me trails in</label> */}
         <select className={styles.select}
             value={this.state.region}
             onChange={this.handleSelect}>
