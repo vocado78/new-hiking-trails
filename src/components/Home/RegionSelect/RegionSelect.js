@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
 
@@ -33,11 +33,12 @@ export default class RegionSelect extends React.Component {
             <option value='southern-gotaland'>Southern Götaland</option>
             <option value='all'>Show all</option>
         </select>
-        <Link className={styles.button}
+        <a className={styles.button} href={'/'}>Go</a>
+        {/* <Link className={styles.button}
           to={{
             pathname: "/results",
             search: "?region=" + this.state.region
-          }}>Go</Link>
+          }}>Go</Link> */}
 
       </form>
     );
