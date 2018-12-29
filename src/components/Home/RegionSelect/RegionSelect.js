@@ -4,6 +4,37 @@ import React from 'react';
 import styles from './styles.css';
 
 export default class RegionSelect extends React.Component {
+  static regions = [
+    {
+      label: 'Please select region',
+      value: ''
+    },
+    {
+      label: 'Northern Norrland',
+      value: 'northern-norrland'
+    },
+    {
+      label: 'Southern Norrland',
+      value: 'southern-norrland'
+    },
+    {
+      label: 'Svealand',
+      value: 'svealand'
+    },
+    {
+      label: 'Northern Götaland',
+      value: 'northern-gotaland'
+    },
+    {
+      label: 'Southern Götaland',
+      value: 'southern-gotaland'
+    },
+    {
+      label: 'Show all',
+      value: 'all'
+    }
+  ];
+
   constructor(props) {
     super(props);
     this.state = {
@@ -11,6 +42,7 @@ export default class RegionSelect extends React.Component {
     };
 
     this.handleSelect = this.handleSelect.bind(this);
+    this.renderOptions = this.renderOptions.bind(this);
   }
 
   handleSelect(event) {
@@ -22,19 +54,12 @@ export default class RegionSelect extends React.Component {
     const { region } = this.state;
     return (
       <form className={styles.form}>
-        {/* <label>Show me trails in</label> */}
         <select
           className={styles.select}
           value={region}
           onChange={this.handleSelect}
         >
-          <option value="">Please select region</option>
-          <option value="northern-norrland">Northern Norrland</option>
-          <option value="southern-norrland">Southern Norrland</option>
-          <option value="svealand">Svealand</option>
-          <option value="northern-gotaland">Northern Götaland</option>
-          <option value="southern-gotaland">Southern Götaland</option>
-          <option value="all">Show all</option>
+          {RegionSelect.regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>
         <a className={styles.button} href="/">Go</a>
         {/* <Link className={styles.button}
