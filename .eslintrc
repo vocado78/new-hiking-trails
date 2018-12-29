@@ -1,16 +1,18 @@
 {
   "extends": "airbnb",
   "plugins": [
-    "react"
+    "react",
+    "import"
   ],
+  "parser": "babel-eslint",
   "env": {
     "es6": true,
     "browser": true,
     "node": true
   },
   "rules": {
-    "global-require": 0,
-    "max-len": 0,
-    "no-process-env": 0
+    "comma-dangle": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "no-console": 0
   }
 }

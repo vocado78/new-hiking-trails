@@ -11,6 +11,6 @@ const BannerText = () => {
       <p className={styles.intro}>{intro}</p>
     </div>
   );
-}
+};
 
 export default BannerText;
