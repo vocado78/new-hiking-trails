@@ -1,7 +1,6 @@
 {
   "extends": "airbnb",
   "plugins": [
-    "flowtype",
     "react"
   ],
   "env": {
@@ -12,7 +11,6 @@
   "rules": {
     "global-require": 0,
     "max-len": 0,
-    "no-process-env": 0,
-    "react/no-deprecated": "warning"
+    "no-process-env": 0
   }
 }
