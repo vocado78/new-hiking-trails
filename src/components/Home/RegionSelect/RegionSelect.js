@@ -3,38 +3,38 @@ import React from 'react';
 
 import styles from './styles.css';
 
-export default class RegionSelect extends React.Component {
-  static regions = [
-    {
-      label: 'Please select region',
-      value: ''
-    },
-    {
-      label: 'Northern Norrland',
-      value: 'northern-norrland'
-    },
-    {
-      label: 'Southern Norrland',
-      value: 'southern-norrland'
-    },
-    {
-      label: 'Svealand',
-      value: 'svealand'
-    },
-    {
-      label: 'Northern Götaland',
-      value: 'northern-gotaland'
-    },
-    {
-      label: 'Southern Götaland',
-      value: 'southern-gotaland'
-    },
-    {
-      label: 'Show all',
-      value: 'all'
-    }
-  ];
+const regions = [
+  {
+    label: 'Please select region',
+    value: ''
+  },
+  {
+    label: 'Northern Norrland',
+    value: 'northern-norrland'
+  },
+  {
+    label: 'Southern Norrland',
+    value: 'southern-norrland'
+  },
+  {
+    label: 'Svealand',
+    value: 'svealand'
+  },
+  {
+    label: 'Northern Götaland',
+    value: 'northern-gotaland'
+  },
+  {
+    label: 'Southern Götaland',
+    value: 'southern-gotaland'
+  },
+  {
+    label: 'Show all',
+    value: 'all'
+  }
+];
 
+export default class RegionSelect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,6 @@ export default class RegionSelect extends React.Component {
     };
 
     this.handleSelect = this.handleSelect.bind(this);
-    this.renderOptions = this.renderOptions.bind(this);
   }
 
   handleSelect(event) {
@@ -59,7 +58,7 @@ export default class RegionSelect extends React.Component {
           value={region}
           onChange={this.handleSelect}
         >
-          {RegionSelect.regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
+          {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>
         <a className={styles.button} href="/">Go</a>
         {/* <Link className={styles.button}
