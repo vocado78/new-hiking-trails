@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
@@ -34,40 +35,33 @@ const regions = [
   }
 ];
 
-export default class RegionSelect extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      region: ''
-    };
+export default function RegionSelect(props) {
+  const {
+    region,
+    onChange
+  } = props;
 
-    this.handleSelect = this.handleSelect.bind(this);
-  }
-
-  handleSelect(event) {
-    this.setState({ region: event.target.value });
-    console.log(event.target.value);
-  }
-
-  render() {
-    const { region } = this.state;
-    return (
-      <form className={styles.form}>
-        <select
-          className={styles.select}
-          value={region}
-          onChange={this.handleSelect}
-        >
-          {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
-        </select>
-        <a className={styles.button} href="/">Go</a>
-        {/* <Link className={styles.button}
+  return (
+    <form className={styles.form}>
+      <select
+        className={styles.select}
+        value={region}
+        onChange={onChange}
+      >
+        {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
+      </select>
+      <a className={styles.button} href="/">Go</a>
+      {/* <Link className={styles.button}
           to={{
             pathname: "/results",
             search: "?region=" + this.state.region
           }}>Go</Link> */}
 
-      </form>
-    );
-  }
+    </form>
+  );
 }
+
+RegionSelect.propTypes = {
+  region: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+};
