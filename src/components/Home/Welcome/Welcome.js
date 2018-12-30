@@ -5,14 +5,14 @@ import styles from './styles.css';
 import content from '../../../utils/content';
 
 export default function Welcome() {
-  const { first, second } = content.home.welcome;
+  const { title, first, second } = content.home.welcome;
   return (
     <div className={styles.welcome}>
       <div className={styles.welcomeText}>
         <h2>
           <span>Home</span>
           <br />
-          Welcome to Hiking Trails in Sweden
+          {title}
         </h2>
         <p>{first}</p>
         <p>{second}</p>

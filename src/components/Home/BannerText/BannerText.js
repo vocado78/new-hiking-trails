@@ -3,7 +3,7 @@ import React from 'react';
 import content from '../../../utils/content';
 import styles from './styles.css';
 
-const BannerText = () => {
+export default function BannerText() {
   const { title, intro } = content.home.banner;
   return (
     <div>
@@ -11,6 +11,4 @@ const BannerText = () => {
       <p className={styles.intro}>{intro}</p>
     </div>
   );
-};
-
-export default BannerText;
+}
