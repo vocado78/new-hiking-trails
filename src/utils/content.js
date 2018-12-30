@@ -1,4 +1,7 @@
 const content = {
+  navbar: {
+    title: 'Hiking Trails in Sweden'
+  },
   home: {
     banner: {
       title: 'Looking for a hiking trail in Sweden?',

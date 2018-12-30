@@ -30,7 +30,7 @@ export default class Home extends Component {
   handleMouseEnter = (id) => {
     this.setState({
       regionColor: {
-        [id]: '#cc0099'
+        [id]: '#b3003b'
       }
     });
   }
