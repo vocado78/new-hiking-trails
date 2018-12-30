@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 75px;
+  color: #ffffff;
+  background: #ffc814;
+}
+
+.navbar > h1 {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.navList {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+}
+
+.navList > li > a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 28px 32px;
+}
