@@ -1,0 +1,28 @@
+.welcome {
+  max-width: 960px;
+  padding: 96px 0;
+}
+
+.welcomeText {
+  max-width: 65%;
+  margin: 0 auto;
+}
+
+.welcomeText > h2 {
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 62px;
+}
+
+.welcomeText > h2 > span {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #284d00;
+  letter-spacing: 2px;
+}
+
+.welcomeText > p {
+  line-height: 1.6em;
+  margin-bottom: 1.3em;
+}

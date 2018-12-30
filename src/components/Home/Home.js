@@ -4,6 +4,7 @@ import styles from './styles.css';
 import RegionSelect from './RegionSelect/RegionSelect';
 import RegionMap from './RegionMap/RegionMap';
 import BannerText from './BannerText/BannerText';
+import Welcome from './Welcome/Welcome';
 
 
 export default class Home extends Component {
@@ -65,6 +66,7 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
+        <Welcome />
       </div>
     );
   }
