@@ -42,7 +42,8 @@ const config = {
   },
   plugins: [new HtmlWebpackPlugin({
     template: 'src/index.html'
-  })]
+  })],
+  mode: 'none'
 };
 
 if (process.env.NODE_ENV === 'production') {

@@ -7,15 +7,18 @@ import BannerText from './BannerText/BannerText';
 
 
 export default class Home extends Component {
-  state = {
-    region: '',
-    regionColor: {
-      nn: '#bfbfbf',
-      sn: '#bfbfbf',
-      s: '#bfbfbf',
-      ng: '#bfbfbf',
-      sg: '#bfbfbf'
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      region: '',
+      regionColor: {
+        nn: '#bfbfbf',
+        sn: '#bfbfbf',
+        s: '#bfbfbf',
+        ng: '#bfbfbf',
+        sg: '#bfbfbf'
+      }
+    };
   }
 
   handleSelect = (event) => {
