@@ -3,6 +3,7 @@ import React from 'react';
 
 import styles from './styles.css';
 import content from '../../../utils/content';
+import Button from '../../Button/Button';
 
 export default function Welcome() {
   const { title, first, second } = content.home.welcome;
@@ -16,6 +17,10 @@ export default function Welcome() {
         </h2>
         <p>{first}</p>
         <p>{second}</p>
+        <Button
+          path="/about"
+          label="Read More"
+        />
       </div>
       <div className={styles.welcomeImage}>
         {/* TODO: add <img /> */}
