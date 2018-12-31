@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
+import Button from '../../Button/Button';
 
 const regions = [
   {
@@ -50,13 +50,11 @@ export default function RegionSelect(props) {
       >
         {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
       </select>
-      <a className={styles.button} href="/">Go</a>
-      {/* <Link className={styles.button}
-          to={{
-            pathname: "/results",
-            search: "?region=" + this.state.region
-          }}>Go</Link> */}
-
+      <Button
+        path="/results"
+        searchString={`?region=${region}`}
+        label="Go"
+      />
     </form>
   );
 }
