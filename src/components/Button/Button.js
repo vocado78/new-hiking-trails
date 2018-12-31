@@ -19,8 +19,12 @@ export default function Button(props) {
   );
 }
 
+Button.defaultProps = {
+  searchString: ''
+};
+
 Button.propTypes = {
   path: PropTypes.string.isRequired,
-  searchString: PropTypes.string.isRequired,
+  searchString: PropTypes.string,
   label: PropTypes.string.isRequired
 };
