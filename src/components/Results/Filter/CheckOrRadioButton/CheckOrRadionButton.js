@@ -15,9 +15,10 @@ export default function CheckOrRadioButton(props) {
 
   return (
     <div className={styles.formRow}>
+      {/* eslint-disable-next-line jsx-a11y/label-has-for */}
+      <label htmlFor={setName} className={styles.labelTitle}>{title}</label>
       {options.map(option => (
-        <label htmlFor={setName} key={option} className={styles.labelTitle}>
-          {title}
+        <div key={option}>
           <input
             name={setName}
             onChange={handleFunc}
@@ -27,7 +28,7 @@ export default function CheckOrRadioButton(props) {
           />
           {' '}
           {option}
-        </label>
+        </div>
       ))}
     </div>
   );

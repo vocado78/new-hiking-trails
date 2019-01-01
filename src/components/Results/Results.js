@@ -15,7 +15,7 @@ import List from './List/List';
 
 
 export default class Results extends React.Component {
-  propTypes = {
+  static propTypes = {
     location: PropTypes.objectOf(
       PropTypes.string
     ).isRequired

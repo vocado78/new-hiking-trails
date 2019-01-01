@@ -1,12 +1,14 @@
 .list > h2 {
   font-size: 2em;
-  color: #284d00;
   margin: 50px 0 25px 5px;
 }
 
-.list > li {
+.list > ul > a {
+  text-decoration: none;
+}
+
+.list > ul > a > li {
   list-style-type: none;
-  background-color: #ffffff;
   color: #262626;
   border-radius: 5px;
   padding: 10px;
@@ -16,8 +18,8 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.list > li:hover {
-  border: 2px solid #cc0099;
+.list > ul > a > li:hover {
+  border: 2px solid #b3003b;
   -webkit-box-shadow: 0 2px 4px 2px rgba(0,0,0,0.3);
   -moz-box-shadow: 0 2px 4px 2px rgba(0,0,0,0.3);
   box-shadow: 0 2px 4px 2px rgba(0,0,0,0.3);
