@@ -13,6 +13,9 @@ const content = {
       second: 'Walk in the wilderness but seldom far from civilisation. Many sections of most hiking trails are serviced by public transport which makes it easy to tailor a hike according to your specific preferences. It also facilitates combining a hiking trip with a city holiday.'
     },
   },
+  footer: {
+    text: '© 2019 Hiking Trails in Sweden — a project by vocado78'
+  }
 };
 
 export default content;
