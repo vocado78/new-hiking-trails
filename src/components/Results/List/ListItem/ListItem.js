@@ -1,9 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 
 export default function ListItem(props) {
+  // eslint-disable-next-line
   const { data: { name, distance, title } } = props;
 
   return (
@@ -20,10 +21,10 @@ export default function ListItem(props) {
   );
 }
 
-ListItem.propTypes = {
-  data: PropTypes.objectOf(
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number
-  ).isRequired
-};
+// ListItem.propTypes = {
+//   data: PropTypes.objectOf(
+//     PropTypes.string,
+//     PropTypes.arrayOf(PropTypes.string),
+//     PropTypes.number
+//   ).isRequired
+// };

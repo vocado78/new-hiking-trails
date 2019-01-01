@@ -9,21 +9,25 @@ import Button from '../../Button/Button';
 export default function Filter(props) {
   const {
     region,
+    options: {
+      provinces,
+      services,
+      duration,
+      level,
+      comfort
+    },
+    selections: {
+      selectedProvince,
+      selectedService,
+      selectedDay,
+      selectedLevel,
+      selectedComfort
+    },
     onProvinceSelect,
-    provinces,
-    selectedProvince,
     onDaySelect,
-    dayOptions,
-    selectedDay,
     onLevelSelect,
-    levelOptions,
-    selectedLevel,
-    onComSelect,
-    comOptions,
-    selectedCom,
-    onServSelect,
-    servOptions,
-    selectedServ
+    onComfortSelect,
+    onServiceSelect
   } = props;
 
   return (
@@ -37,41 +41,41 @@ export default function Filter(props) {
       <ProvinceSelect
         title="Province"
         placeholder="Please select"
-        handleFunc={onProvinceSelect}
+        handleChange={onProvinceSelect}
         options={provinces}
         selectedOption={selectedProvince}
       />
       <CheckOrRadioButton
         title="Number of days I want to hike"
-        setName="days"
+        name="days"
         type="radio"
-        handleFunc={onDaySelect}
-        options={dayOptions}
+        handleChange={onDaySelect}
+        options={duration}
         selectedOption={selectedDay}
       />
       <CheckOrRadioButton
         title="Level of Difficulty"
-        setName="level"
+        name="level"
         type="checkbox"
-        handleFunc={onLevelSelect}
-        options={levelOptions}
+        handleChange={onLevelSelect}
+        options={level}
         selectedOption={selectedLevel}
       />
       <CheckOrRadioButton
         title="Comfort"
-        setName="comfort"
+        name="comfort"
         type="radio"
-        handleFunc={onComSelect}
-        options={comOptions}
-        selectedOption={selectedCom}
+        handleChange={onComfortSelect}
+        options={comfort}
+        selectedOption={selectedComfort}
       />
       <CheckOrRadioButton
         title="Services availability"
-        setName="services"
+        name="services"
         type="radio"
-        handleFunc={onServSelect}
-        options={servOptions}
-        selectedOption={selectedServ}
+        handleChange={onServiceSelect}
+        options={services}
+        selectedOption={selectedService}
       />
       <Button
         path="/results"
@@ -84,19 +88,19 @@ export default function Filter(props) {
 
 Filter.propTypes = {
   region: PropTypes.string.isRequired,
+  options: PropTypes.objectOf(
+    PropTypes.arrayOf(PropTypes.string)
+  ).isRequired,
+  selections: PropTypes.shape({
+    selectedProvince: PropTypes.string,
+    selectedComfort: PropTypes.string,
+    selectedDay: PropTypes.string,
+    selectedLevel: PropTypes.arrayOf(PropTypes.string),
+    selectedService: PropTypes.string
+  }).isRequired,
   onProvinceSelect: PropTypes.func.isRequired,
-  provinces: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedProvince: PropTypes.string.isRequired,
   onDaySelect: PropTypes.func.isRequired,
-  dayOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedDay: PropTypes.string.isRequired,
   onLevelSelect: PropTypes.func.isRequired,
-  levelOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedLevel: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onComSelect: PropTypes.func.isRequired,
-  comOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedCom: PropTypes.string.isRequired,
-  onServSelect: PropTypes.func.isRequired,
-  servOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedServ: PropTypes.string.isRequired
+  onComfortSelect: PropTypes.func.isRequired,
+  onServiceSelect: PropTypes.func.isRequired
 };

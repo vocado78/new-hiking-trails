@@ -282,6 +282,13 @@ const provinces = {
   ]
 };
 
+const filterOptions = {
+  services: ['Satisfactory', 'Good', 'Very good'],
+  duration: ['1-3 days', '4-7 days', '2 weeks', '3 weeks or more'],
+  level: ['Easy', 'Easy to moderate', 'Moderate', 'Moderate to difficult', 'Difficult'],
+  comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
+};
+
 const filterByRegion = (region) => {
   const results = trails.filter(trail => trail.region === region);
   return results;
@@ -312,5 +319,6 @@ module.exports = {
   capitalize,
   showAllTrails,
   showProvinces,
-  showAllProvinces
+  showAllProvinces,
+  filterOptions
 };

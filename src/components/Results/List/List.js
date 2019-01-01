@@ -7,36 +7,39 @@ import ListItem from './ListItem/ListItem';
 
 export default function List(props) {
   const {
-    comfort,
-    day,
-    level,
-    list,
-    prov,
     region,
-    services
+    // eslint-disable-next-line
+    results,
+    selections: {
+      selectedProvince,
+      selectedService,
+      selectedDay,
+      selectedLevel,
+      selectedComfort
+    }
   } = props;
 
-  const data = list;
+  const data = results;
   let listing = data;
 
-  if (prov.length >= 1) {
-    listing = listing.filter(trail => trail.province === prov);
+  if (selectedProvince.length >= 1) {
+    listing = listing.filter(trail => trail.province === selectedProvince);
   }
 
-  if (day.length >= 1) {
-    listing = listing.filter(trail => trail.duration.includes(day));
+  if (selectedDay.length >= 1) {
+    listing = listing.filter(trail => trail.duration.includes(selectedDay));
   }
 
-  if (level.length >= 1) {
-    listing = listing.filter(trail => level.includes(trail.level));
+  if (selectedLevel.length >= 1) {
+    listing = listing.filter(trail => selectedLevel.includes(trail.level));
   }
 
-  if (comfort.length >= 1) {
-    listing = listing.filter(trail => trail.comfort.includes(comfort));
+  if (selectedComfort.length >= 1) {
+    listing = listing.filter(trail => trail.comfort.includes(selectedComfort));
   }
 
-  if (services.length >= 1) {
-    listing = listing.filter(trail => trail.services === services);
+  if (selectedService.length >= 1) {
+    listing = listing.filter(trail => trail.services === selectedService);
   }
 
   return (
@@ -68,15 +71,17 @@ export default function List(props) {
 }
 
 List.propTypes = {
-  comfort: PropTypes.string.isRequired,
-  day: PropTypes.string.isRequired,
-  level: PropTypes.arrayOf(PropTypes.string).isRequired,
-  list: PropTypes.arrayOf(PropTypes.objectOf(
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number
-  )).isRequired,
-  prov: PropTypes.string.isRequired,
   region: PropTypes.string.isRequired,
-  services: PropTypes.string.isRequired
+  // results: PropTypes.arrayOf(PropTypes.objectOf(
+  //   PropTypes.string,
+  //   PropTypes.arrayOf(PropTypes.string),
+  //   PropTypes.number
+  // )).isRequired,
+  selections: PropTypes.shape({
+    selectedProvince: PropTypes.string,
+    selectedComfort: PropTypes.string,
+    selectedDay: PropTypes.string,
+    selectedLevel: PropTypes.arrayOf(PropTypes.string),
+    selectedService: PropTypes.string
+  }).isRequired
 };
