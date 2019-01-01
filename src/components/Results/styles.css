@@ -1,0 +1,7 @@
+.results {
+  max-width: 1000px;
+  margin: 0 auto 100px auto;
+  display: flex;
+  padding: 20px;
+  text-align: left;
+}
