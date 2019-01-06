@@ -1,0 +1,17 @@
+.pageTitle {
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 62px;
+  border-left: 4px solid #ffc814;
+  padding-left: 10px;
+  line-height: 0.7;
+}
+
+.pageTitle > span {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ffc814;
+  letter-spacing: 2px;
+  vertical-align: top;
+}

@@ -5,7 +5,7 @@ import styles from './styles.css';
 
 export default function ProvinceSelect(props) {
   const {
-    handleFunc,
+    handleChange,
     options,
     placeholder,
     selectedOption,
@@ -18,7 +18,8 @@ export default function ProvinceSelect(props) {
       <label htmlFor={title} className={styles.labelTitle}>{title}</label>
       <select
         value={selectedOption}
-        onChange={handleFunc}
+        onChange={handleChange}
+        name={title}
       >
         <option value="">{placeholder}</option>
         {options.map(province => (
@@ -32,7 +33,7 @@ export default function ProvinceSelect(props) {
 }
 
 ProvinceSelect.propTypes = {
-  handleFunc: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   placeholder: PropTypes.string.isRequired,
   selectedOption: PropTypes.oneOfType([

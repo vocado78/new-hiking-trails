@@ -8,10 +8,13 @@ import {
   capitalize,
   showAllTrails,
   showAllProvinces,
-  showProvinces
+  showProvinces,
+  filterOptions
 } from './utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
+import PageTitle from '../PageTitle/PageTitle';
+import content from '../../utils/content';
 
 
 export default class Results extends React.Component {
@@ -23,177 +26,153 @@ export default class Results extends React.Component {
 
   constructor(props) {
     super(props);
+    const {
+      services, duration, level, comfort
+    } = filterOptions;
     this.state = {
       results: [],
       name: '',
-      provinces: [],
-      selectedProvince: '',
-      services: [],
-      selectedServ: '',
-      duration: [],
-      selectedDay: '',
-      level: [],
-      selectedLevel: [],
-      comfort: [],
-      selectedCom: ''
+      options: {
+        provinces: [],
+        services,
+        duration,
+        level,
+        comfort
+      },
+      selections: {
+        selectedProvince: '',
+        selectedService: '',
+        selectedDay: '',
+        selectedLevel: [],
+        selectedComfort: ''
+      }
     };
-    this.handleProvinceSelect = this.handleProvinceSelect.bind(this);
-    this.handleServSelect = this.handleServSelect.bind(this);
-    this.handleDaySelect = this.handleDaySelect.bind(this);
-    this.handleLevelSelect = this.handleLevelSelect.bind(this);
-    this.handleComSelect = this.handleComSelect.bind(this);
-    // this.handleClearFilter = this.handleClearFilter.bind(this);
   }
 
   componentDidMount() {
     const { location: { search } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    let display;
-    let list;
+    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
-    if (region === 'all') {
-      list = showAllTrails();
-      display = showAllProvinces();
-    } else {
-      list = filterByRegion(region);
-      display = showProvinces(region);
-    }
-
-    this.setState({
-      results: list,
+    this.setState(prevState => ({
+      results: trails,
       name: region,
-      provinces: display,
-      services: ['Satisfactory', 'Good', 'Very good'],
-      duration: ['1-3 days', '4-7 days', '2 weeks', '3 weeks or more'],
-      level: ['Easy', 'Easy to moderate', 'Moderate', 'Moderate to difficult',
-        'Difficult'],
-      comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
-      selectedProvince: '',
-      selectedDay: '',
-      selectedLevel: [],
-      selectedCom: '',
-      selectedServ: ''
-    });
+      options: {
+        ...prevState.options,
+        provinces
+      }
+    }));
   }
 
   componentWillReceiveProps(nextProps) {
     const { location: { search } } = nextProps;
     const region = queryString.parse(search).region || 'all';
-    let display;
-    let list;
+    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
-    if (region === 'all') {
-      list = showAllTrails();
-      display = showAllProvinces();
-    } else {
-      list = filterByRegion(region);
-      display = showProvinces(region);
-    }
-
-    this.setState({
-      results: list,
+    this.setState(prevState => ({
+      results: trails,
       name: region,
-      provinces: display,
-      services: ['Satisfactory', 'Good', 'Very good'],
-      duration: ['1-3 days', '4-7 days', '2 weeks', '3 weeks or more'],
-      level: ['Easy', 'Easy to moderate', 'Moderate', 'Moderate to difficult',
-        'Difficult'],
-      comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
-      selectedProvince: '',
-      selectedDay: '',
-      selectedLevel: [],
-      selectedCom: '',
-      selectedServ: ''
-    });
+      options: {
+        ...prevState.options,
+        provinces
+      }
+    }));
   }
 
-  handleProvinceSelect(event) {
-    this.setState({ selectedProvince: event.target.value });
-  }
+  handleSelects = (event) => {
+    const keys = Object.keys(this.state.selections);
+    const inputName = capitalize(event.target.name);
+    const key = keys.filter(k => k === `selected${inputName}`);
+    const { selections } = this.state;
 
-  handleDaySelect(event) {
-    this.setState({ selectedDay: event.target.value });
-  }
-
-  handleLevelSelect(event) {
-    const { selectedLevel } = this.state;
-    const newLevel = event.target.value;
-    let newSelArr;
-    if (selectedLevel.includes(newLevel)) {
-      newSelArr = selectedLevel.filter(level => level !== newLevel);
+    if (key[0] === 'selectedLevel') {
+      this.handleLevelSelect(event);
     } else {
-      newSelArr = [...selectedLevel, newLevel];
+      this.setState({
+        selections: {
+          ...selections,
+          [key]: event.target.value
+        }
+      });
     }
-    this.setState({ selectedLevel: newSelArr });
   }
 
-  handleComSelect(event) {
-    this.setState({ selectedCom: event.target.value });
+  handleLevelSelect = (event) => {
+    const { selections: { selectedLevel } } = this.state;
+    const newLevel = event.target.value;
+    let newSelectedLevel;
+    if (selectedLevel.includes(newLevel)) {
+      newSelectedLevel = selectedLevel.filter(level => level !== newLevel);
+    } else {
+      newSelectedLevel = [...selectedLevel, newLevel];
+    }
+    this.setState(prevState => ({
+      selections: {
+        ...prevState.selections,
+        selectedLevel: newSelectedLevel
+      }
+    }));
   }
 
-  handleServSelect(event) {
-    this.setState({ selectedServ: event.target.value });
-  }
+  handleClick = () => {
+    const { location: { search } } = this.props;
+    const region = queryString.parse(search).region || 'all';
+    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
+    const {
+      services, duration, level, comfort
+    } = filterOptions;
 
-  /* handleClearFilter(event) {
-    event.preventDefault();
     this.setState({
-      selectedProvince: "",
-      selectedDay: "",
-      selectedLevel: [],
-      selectedCom: "",
-      selectedServ: ""
+      results: trails,
+      name: region,
+      options: {
+        provinces,
+        services,
+        duration,
+        level,
+        comfort
+      },
+      selections: {
+        selectedProvince: '',
+        selectedService: '',
+        selectedDay: '',
+        selectedLevel: [],
+        selectedComfort: ''
+      }
     });
-  } */
+  }
 
   render() {
     const {
+      results,
       name,
-      provinces,
-      selectedProvince,
-      services,
-      selectedServ,
-      duration,
-      selectedCom,
-      selectedDay,
-      selectedLevel,
-      level,
-      comfort,
-      results
+      options,
+      selections
     } = this.state;
     const region = capitalize(name);
+    const { results: { title } } = content;
 
     return (
       <div className={styles.results}>
-        <Filter
-          region={region}
-          provinces={provinces}
-          onProvinceSelect={this.handleProvinceSelect}
-          selectedProvince={selectedProvince}
-          servOptions={services}
-          selectedServ={selectedServ}
-          onServSelect={this.handleServSelect}
-          dayOptions={duration}
-          selectedDay={selectedDay}
-          onDaySelect={this.handleDaySelect}
-          levelOptions={level}
-          selectedLevel={selectedLevel}
-          onLevelSelect={this.handleLevelSelect}
-          comOptions={comfort}
-          selectedCom={selectedCom}
-          onComSelect={this.handleComSelect}
-        />
-        <List
-          region={region}
-          list={results}
-          prov={selectedProvince}
-          day={selectedDay}
-          level={selectedLevel}
-          comfort={selectedCom}
-          services={selectedServ}
-        />
+        <PageTitle title={`${title} ${region}`} page="Results" />
+        <div className={styles.container}>
+          <Filter
+            region={region}
+            options={options}
+            selections={selections}
+            onSelect={this.handleSelects}
+            handleClick={this.handleClick}
+          />
+          <List
+            region={region}
+            results={results}
+            selections={selections}
+          />
+        </div>
       </div>
     );
   }
 }
-// onClearFilter={this.handleClearFilter}
