@@ -23,11 +23,7 @@ export default function Filter(props) {
       selectedLevel,
       selectedComfort
     },
-    onProvinceSelect,
-    onDaySelect,
-    onLevelSelect,
-    onComfortSelect,
-    onServiceSelect
+    onSelect
   } = props;
 
   return (
@@ -41,15 +37,15 @@ export default function Filter(props) {
       <ProvinceSelect
         title="Province"
         placeholder="Please select"
-        handleChange={onProvinceSelect}
+        handleChange={onSelect}
         options={provinces}
         selectedOption={selectedProvince}
       />
       <CheckOrRadioButton
         title="Number of days I want to hike"
-        name="days"
+        name="day"
         type="radio"
-        handleChange={onDaySelect}
+        handleChange={onSelect}
         options={duration}
         selectedOption={selectedDay}
       />
@@ -57,7 +53,7 @@ export default function Filter(props) {
         title="Level of Difficulty"
         name="level"
         type="checkbox"
-        handleChange={onLevelSelect}
+        handleChange={onSelect}
         options={level}
         selectedOption={selectedLevel}
       />
@@ -65,15 +61,15 @@ export default function Filter(props) {
         title="Comfort"
         name="comfort"
         type="radio"
-        handleChange={onComfortSelect}
+        handleChange={onSelect}
         options={comfort}
         selectedOption={selectedComfort}
       />
       <CheckOrRadioButton
         title="Services availability"
-        name="services"
+        name="service"
         type="radio"
-        handleChange={onServiceSelect}
+        handleChange={onSelect}
         options={services}
         selectedOption={selectedService}
       />
@@ -98,9 +94,5 @@ Filter.propTypes = {
     selectedLevel: PropTypes.arrayOf(PropTypes.string),
     selectedService: PropTypes.string
   }).isRequired,
-  onProvinceSelect: PropTypes.func.isRequired,
-  onDaySelect: PropTypes.func.isRequired,
-  onLevelSelect: PropTypes.func.isRequired,
-  onComfortSelect: PropTypes.func.isRequired,
-  onServiceSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired
 };

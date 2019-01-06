@@ -22,23 +22,23 @@ export default function List(props) {
   const data = results;
   let listing = data;
 
-  if (selectedProvince.length >= 1) {
+  if (selectedProvince && selectedProvince.length >= 1) {
     listing = listing.filter(trail => trail.province === selectedProvince);
   }
 
-  if (selectedDay.length >= 1) {
+  if (selectedDay && selectedDay.length >= 1) {
     listing = listing.filter(trail => trail.duration.includes(selectedDay));
   }
 
-  if (selectedLevel.length >= 1) {
+  if (selectedLevel && selectedLevel.length >= 1) {
     listing = listing.filter(trail => selectedLevel.includes(trail.level));
   }
 
-  if (selectedComfort.length >= 1) {
+  if (selectedComfort && selectedComfort.length >= 1) {
     listing = listing.filter(trail => trail.comfort.includes(selectedComfort));
   }
 
-  if (selectedService.length >= 1) {
+  if (selectedService && selectedService.length >= 1) {
     listing = listing.filter(trail => trail.services === selectedService);
   }
 

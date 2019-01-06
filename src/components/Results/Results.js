@@ -24,15 +24,18 @@ export default class Results extends React.Component {
 
   constructor(props) {
     super(props);
+    const {
+      services, duration, level, comfort
+    } = filterOptions;
     this.state = {
       results: [],
       name: '',
       options: {
         provinces: [],
-        services: [],
-        duration: [],
-        level: [],
-        comfort: [],
+        services,
+        duration,
+        level,
+        comfort
       },
       selections: {
         selectedProvince: '',
@@ -47,9 +50,6 @@ export default class Results extends React.Component {
   componentDidMount() {
     const { location: { search } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const {
-      services, duration, level, comfort
-    } = filterOptions;
     const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
@@ -57,11 +57,8 @@ export default class Results extends React.Component {
       results: trails,
       name: region,
       options: {
-        provinces,
-        services,
-        duration,
-        level,
-        comfort
+        ...this.state.options,
+        provinces
       }
     });
   }
@@ -69,9 +66,6 @@ export default class Results extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { location: { search } } = nextProps;
     const region = queryString.parse(search).region || 'all';
-    const {
-      services, duration, level, comfort
-    } = filterOptions;
     const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
@@ -79,59 +73,42 @@ export default class Results extends React.Component {
       results: trails,
       name: region,
       options: {
-        provinces,
-        services,
-        duration,
-        level,
-        comfort
+        ...this.state.options,
+        provinces
       }
     });
   }
 
-  handleProvinceSelect = (event) => {
-    this.setState({
-      selections: {
-        selectedProvince: event.target.value
-      }
-    });
-  }
-
-  handleDaySelect = (event) => {
-    this.setState({
-      selections: {
-        selectedDay: event.target.value
-      }
-    });
+  handleSelects = (event) => {
+    const keys = Object.keys(this.state.selections);
+    const inputName = capitalize(event.target.name);
+    const key = keys.filter(key => key === `selected${inputName}`);
+    
+    if (key[0] === 'selectedLevel') {
+      this.handleLevelSelect(event);
+    } else {
+      this.setState({
+        selections: {
+          ...this.state.selections,
+          [key]: event.target.value
+        }
+      });
+    } 
   }
 
   handleLevelSelect = (event) => {
-    const { selectedLevel } = this.state;
+    const { selections: { selectedLevel } } = this.state;
     const newLevel = event.target.value;
-    let newSelArr;
+    let newSelectedLevel;
     if (selectedLevel.includes(newLevel)) {
-      newSelArr = selectedLevel.filter(level => level !== newLevel);
+      newSelectedLevel = selectedLevel.filter(level => level !== newLevel);
     } else {
-      newSelArr = [...selectedLevel, newLevel];
+      newSelectedLevel = [...selectedLevel, newLevel];
     }
     this.setState({
       selections: {
-        selectedLevel: newSelArr
-      }
-    });
-  }
-
-  handleComfortSelect = (event) => {
-    this.setState({
-      selections: {
-        selectedComfort: event.target.value
-      }
-    });
-  }
-
-  handleServiceSelect = (event) => {
-    this.setState({
-      selections: {
-        selectedService: event.target.value
+        ...this.state.selections,
+        selectedLevel: newSelectedLevel
       }
     });
   }
@@ -151,11 +128,7 @@ export default class Results extends React.Component {
           region={region}
           options={options}
           selections={selections}
-          onProvinceSelect={this.handleProvinceSelect}
-          onServiceSelect={this.handleServiceSelect}
-          onDaySelect={this.handleDaySelect}
-          onLevelSelect={this.handleLevelSelect}
-          onComfortSelect={this.handleComfortSelect}
+          onSelect={this.handleSelects}
         />
         <List
           region={region}
@@ -166,5 +139,3 @@ export default class Results extends React.Component {
     );
   }
 }
-
-// TODO: combine 4 handlers into one?

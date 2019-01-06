@@ -297,8 +297,7 @@ const filterByRegion = (region) => {
 const showAllTrails = () => trails;
 
 const capitalize = (str) => {
-  const capitalized = str.replace(/[^a-z]/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-  return capitalized;
+  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 const showProvinces = (region) => {

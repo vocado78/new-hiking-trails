@@ -19,6 +19,7 @@ export default function ProvinceSelect(props) {
       <select
         value={selectedOption}
         onChange={handleChange}
+        name={title}
       >
         <option value="">{placeholder}</option>
         {options.map(province => (
