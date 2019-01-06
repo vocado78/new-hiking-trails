@@ -24,6 +24,7 @@ export default function Filter(props) {
       selectedLevel,
       selectedComfort
     },
+    handleClick,
     onSelect
   } = props;
   const { results: { filter: { title, subtitle } } } = content;
@@ -76,9 +77,8 @@ export default function Filter(props) {
         selectedOption={selectedService}
       />
       <Button
-        path="/results"
-        searchString="?region=all"
         label="Clear All Filters"
+        handleClick={handleClick}
       />
     </form>
   );
@@ -96,5 +96,6 @@ Filter.propTypes = {
     selectedLevel: PropTypes.arrayOf(PropTypes.string),
     selectedService: PropTypes.string
   }).isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired
 };

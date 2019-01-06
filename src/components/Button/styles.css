@@ -1,5 +1,14 @@
-.btnPrimary {
+.btnLink {
   text-decoration: none;
+  padding: 9px;
+  background-color: #ffc814;
+  color: #ffffff;
+  border-radius: 3px;
+}
+
+.btn {
+  text-decoration: none;
+  border: none;
   padding: 9px;
   background-color: #ffc814;
   color: #ffffff;

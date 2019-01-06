@@ -115,6 +115,35 @@ export default class Results extends React.Component {
     });
   }
 
+  handleClick = () => {
+    const { location: { search } } = this.props;
+    const region = queryString.parse(search).region || 'all';
+    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
+    const {
+      services, duration, level, comfort
+    } = filterOptions;
+
+    this.setState({
+      results: trails,
+      name: region,
+      options: {
+        provinces,
+        services,
+        duration,
+        level,
+        comfort
+      },
+      selections: {
+        selectedProvince: '',
+        selectedService: '',
+        selectedDay: '',
+        selectedLevel: [],
+        selectedComfort: ''
+      }
+    });
+  }
+
   render() {
     const {
       results,
@@ -134,6 +163,7 @@ export default class Results extends React.Component {
             options={options}
             selections={selections}
             onSelect={this.handleSelects}
+            handleClick={this.handleClick}
           />
           <List
             region={region}
