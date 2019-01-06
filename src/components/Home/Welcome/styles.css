@@ -8,24 +8,6 @@
   margin: 0 auto;
 }
 
-.welcomeText > h2 {
-  font-size: 40px;
-  font-weight: 500;
-  margin-bottom: 62px;
-  border-left: 4px solid #ffc814;
-  padding-left: 10px;
-  line-height: 0.7;
-}
-
-.welcomeText > h2 > span {
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #ffc814;
-  letter-spacing: 2px;
-  vertical-align: top;
-}
-
 .welcomeText > p {
   line-height: 1.6em;
   margin-bottom: 1.3em;

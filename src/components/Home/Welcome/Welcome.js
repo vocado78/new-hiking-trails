@@ -1,20 +1,16 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 import content from '../../../utils/content';
 import Button from '../../Button/Button';
+import PageTitle from '../../PageTitle/PageTitle';
 
 export default function Welcome() {
   const { title, first, second } = content.home.welcome;
   return (
     <div className={styles.welcome}>
+      <PageTitle title={title} page="Home" />
       <div className={styles.welcomeText}>
-        <h2>
-          <span>Home</span>
-          <br />
-          {title}
-        </h2>
         <p>{first}</p>
         <p>{second}</p>
         <Button

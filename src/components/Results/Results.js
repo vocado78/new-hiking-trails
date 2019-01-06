@@ -13,6 +13,7 @@ import {
 } from './utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
+import PageTitle from '../PageTitle/PageTitle';
 import content from '../../utils/content';
 
 
@@ -83,8 +84,8 @@ export default class Results extends React.Component {
   handleSelects = (event) => {
     const keys = Object.keys(this.state.selections);
     const inputName = capitalize(event.target.name);
-    const key = keys.filter(key => key === `selected${inputName}`);
-    
+    const key = keys.filter(k => k === `selected${inputName}`);
+
     if (key[0] === 'selectedLevel') {
       this.handleLevelSelect(event);
     } else {
@@ -94,7 +95,7 @@ export default class Results extends React.Component {
           [key]: event.target.value
         }
       });
-    } 
+    }
   }
 
   handleLevelSelect = (event) => {
@@ -126,11 +127,7 @@ export default class Results extends React.Component {
 
     return (
       <div className={styles.results}>
-        <h2>
-          {title}
-          {' '}
-          {region}
-        </h2>
+        <PageTitle title={`${title} ${region}`} page="Results" />
         <div className={styles.container}>
           <Filter
             region={region}
