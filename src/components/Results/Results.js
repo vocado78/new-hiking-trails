@@ -13,6 +13,7 @@ import {
 } from './utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
+import content from '../../utils/content';
 
 
 export default class Results extends React.Component {
@@ -121,20 +122,28 @@ export default class Results extends React.Component {
       selections
     } = this.state;
     const region = capitalize(name);
+    const { results: { title } } = content;
 
     return (
       <div className={styles.results}>
-        <Filter
-          region={region}
-          options={options}
-          selections={selections}
-          onSelect={this.handleSelects}
-        />
-        <List
-          region={region}
-          results={results}
-          selections={selections}
-        />
+        <h2>
+          {title}
+          {' '}
+          {region}
+        </h2>
+        <div className={styles.container}>
+          <Filter
+            region={region}
+            options={options}
+            selections={selections}
+            onSelect={this.handleSelects}
+          />
+          <List
+            region={region}
+            results={results}
+            selections={selections}
+          />
+        </div>
       </div>
     );
   }

@@ -1,7 +1,10 @@
 .results {
   max-width: 1000px;
   margin: 0 auto 100px auto;
+}
+
+.container {
   display: flex;
-  padding: 20px;
+  padding: 50px 20px 0 20px;
   text-align: left;
 }

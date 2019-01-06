@@ -7,7 +7,6 @@ import ListItem from './ListItem/ListItem';
 
 export default function List(props) {
   const {
-    region,
     // eslint-disable-next-line
     results,
     selections: {
@@ -44,10 +43,6 @@ export default function List(props) {
 
   return (
     <div className={styles.list}>
-      <h2>
-        Hiking Trails in
-        {region}
-      </h2>
       <ul>
         {listing
           .filter((item, i, ar) => ar.indexOf(item) === i)
@@ -71,7 +66,6 @@ export default function List(props) {
 }
 
 List.propTypes = {
-  region: PropTypes.string.isRequired,
   results: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     region: PropTypes.string,

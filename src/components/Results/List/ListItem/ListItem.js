@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './styles.css';
+import content from '../../../../utils/content';
 
 export default function ListItem(props) {
   // eslint-disable-next-line
   const { data: { name, distance, title } } = props;
-
+  const { results: { listItem: { bullet1 } } } = content;
   return (
     <div className={styles.listItem}>
       <span>♣</span>
       <h3>{name}</h3>
       <p>
-        Total Distance:
+        {bullet1}
         {' '}
         {distance}
       </p>

@@ -5,6 +5,7 @@ import styles from './styles.css';
 import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
 import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 import Button from '../../Button/Button';
+import content from '../../../utils/content';
 
 export default function Filter(props) {
   const {
@@ -25,12 +26,13 @@ export default function Filter(props) {
     },
     onSelect
   } = props;
+  const { results: { filter: { title, subtitle } } } = content;
 
   return (
     <form className={styles.filter}>
-      <p>Filter your results</p>
+      <p>{title}</p>
       <p>
-        Selected region:
+        {subtitle}
         {' '}
         {region}
       </p>
