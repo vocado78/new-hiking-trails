@@ -55,14 +55,14 @@ export default class Results extends React.Component {
     const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
-    this.setState({
+    this.setState(prevState => ({
       results: trails,
       name: region,
       options: {
-        ...this.state.options,
+        ...prevState.options,
         provinces
       }
-    });
+    }));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,27 +71,28 @@ export default class Results extends React.Component {
     const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
-    this.setState({
+    this.setState(prevState => ({
       results: trails,
       name: region,
       options: {
-        ...this.state.options,
+        ...prevState.options,
         provinces
       }
-    });
+    }));
   }
 
   handleSelects = (event) => {
     const keys = Object.keys(this.state.selections);
     const inputName = capitalize(event.target.name);
     const key = keys.filter(k => k === `selected${inputName}`);
+    const { selections } = this.state;
 
     if (key[0] === 'selectedLevel') {
       this.handleLevelSelect(event);
     } else {
       this.setState({
         selections: {
-          ...this.state.selections,
+          ...selections,
           [key]: event.target.value
         }
       });
@@ -107,12 +108,12 @@ export default class Results extends React.Component {
     } else {
       newSelectedLevel = [...selectedLevel, newLevel];
     }
-    this.setState({
+    this.setState(prevState => ({
       selections: {
-        ...this.state.selections,
+        ...prevState.selections,
         selectedLevel: newSelectedLevel
       }
-    });
+    }));
   }
 
   handleClick = () => {
