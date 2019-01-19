@@ -6,3 +6,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
 }
+
+/* To override user agent stylesheets */
+ul {
+  padding: 0;
+  margin: 0;
+}

@@ -49,7 +49,7 @@ export default function List(props) {
           .map(trail => (
             <Link
               to={{
-                pathname: './results/trail-detail',
+                pathname: './results/trail-details',
                 search: `'?name='${trail.name}`,
                 state: trail
               }}
