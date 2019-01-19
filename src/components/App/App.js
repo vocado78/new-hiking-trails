@@ -9,6 +9,7 @@ import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import Footer from '../Footer/Footer';
 import Results from '../Results/Results';
+import TrailDetail from '../TrailDetail/TrailDetail';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class App extends React.Component {
@@ -19,6 +20,7 @@ export default class App extends React.Component {
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route exact path="/results" component={Results} />
+          <Route path="/results/trail-details" component={TrailDetail} />
           <Footer />
         </div>
       </Router>
