@@ -4,7 +4,7 @@ const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -38,12 +38,13 @@ const config = {
     ]
   },
   devServer: {
+    port: 3000,
     historyApiFallback: true
   },
   plugins: [new HtmlWebpackPlugin({
-    template: 'src/index.html'
+    template: 'src/client/index.html'
   })],
-  mode: 'none'
+  mode: 'development'
 };
 
 if (process.env.NODE_ENV === 'production') {
