@@ -18,7 +18,11 @@
       "@babel/plugin-proposal-class-properties"
     ]
   },
-  "author": "",
+  "author": "vocado78",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vocado78/new-hiking-trails.git"
+  },
   "license": "ISC",
   "dependencies": {
     "prop-types": "^15.6.2",
