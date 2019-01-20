@@ -44,7 +44,7 @@ const config = {
   plugins: [new HtmlWebpackPlugin({
     template: 'src/client/index.html'
   })],
-  mode: 'none'
+  mode: 'development'
 };
 
 if (process.env.NODE_ENV === 'production') {
