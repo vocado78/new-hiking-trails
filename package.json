@@ -21,9 +21,13 @@
     ]
   },
   "nodemon": {
+<<<<<<< HEAD
     "watch": [
       "src/server/"
     ]
+=======
+    "watch": ["src/server/"]
+>>>>>>> 6cb8812d12cab7e5e2241421bcf61d12d8e6dc8b
   },
   "author": "vocado78",
   "repository": {
@@ -33,7 +37,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+<<<<<<< HEAD
     "nano": "^8.0.0",
+=======
+>>>>>>> 6cb8812d12cab7e5e2241421bcf61d12d8e6dc8b
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
