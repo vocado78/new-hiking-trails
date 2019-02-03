@@ -1,17 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { provinceSelectType } from '../../../../utils/types';
 
 import styles from './styles.css';
 
-export default function ProvinceSelect(props) {
-  const {
-    handleChange,
-    options,
-    placeholder,
-    selectedOption,
-    title
-  } = props;
-
+export default function ProvinceSelect({
+  handleChange,
+  options,
+  placeholder,
+  selectedOption,
+  title
+}) {
   return (
     <div className={styles.formRow}>
       {/* eslint-disable-next-line jsx-a11y/label-has-for */}
@@ -32,13 +30,4 @@ export default function ProvinceSelect(props) {
   );
 }
 
-ProvinceSelect.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-  placeholder: PropTypes.string.isRequired,
-  selectedOption: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string)
-  ]).isRequired,
-  title: PropTypes.string.isRequired,
-};
+ProvinceSelect.propTypes = provinceSelectType;

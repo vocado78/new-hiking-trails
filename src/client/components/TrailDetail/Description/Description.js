@@ -1,17 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { descriptionType } from '../../../utils/types';
 
 import styles from './styles.css';
 
-export default function Description(props) {
-  const {
-    access,
-    complete,
-    description,
-    landscape,
-    moreInfo
-  } = props;
-
+export default function Description({
+  access,
+  complete,
+  description,
+  landscape,
+  moreInfo
+}) {
   return (
     <div className={styles.description}>
       <h3>Description</h3>
@@ -28,10 +26,4 @@ export default function Description(props) {
   );
 }
 
-Description.propTypes = {
-  access: PropTypes.string.isRequired,
-  complete: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  landscape: PropTypes.string.isRequired,
-  moreInfo: PropTypes.string.isRequired
-};
+Description.propTypes = descriptionType.isRequired;

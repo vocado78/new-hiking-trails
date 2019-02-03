@@ -1,23 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { listType } from '../../../utils/types';
 
 import styles from './styles.css';
 import ListItem from './ListItem/ListItem';
 
-export default function List(props) {
-  const {
-    // eslint-disable-next-line
-    results,
-    selections: {
-      selectedProvince,
-      selectedService,
-      selectedDay,
-      selectedLevel,
-      selectedComfort
-    }
-  } = props;
-
+export default function List({
+  results,
+  selections: {
+    selectedProvince,
+    selectedService,
+    selectedDay,
+    selectedLevel,
+    selectedComfort
+  }
+}) {
   const data = results;
   let listing = data;
 
@@ -65,39 +62,4 @@ export default function List(props) {
   );
 }
 
-List.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    region: PropTypes.string,
-    province: PropTypes.string,
-    start: PropTypes.string,
-    finish: PropTypes.string,
-    startLat: PropTypes.number,
-    startLon: PropTypes.number,
-    middleLat: PropTypes.number,
-    middleLon: PropTypes.number,
-    finLat: PropTypes.number,
-    finLon: PropTypes.number,
-    distance: PropTypes.string,
-    duration: PropTypes.arrayOf(PropTypes.string),
-    complete: PropTypes.string,
-    level: PropTypes.string,
-    comfort: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
-    description: PropTypes.string,
-    landscape: PropTypes.string,
-    connect: PropTypes.string,
-    stageDistances: PropTypes.string,
-    services: PropTypes.string,
-    stages: PropTypes.number,
-    access: PropTypes.string,
-    moreInfo: PropTypes.string
-  })).isRequired,
-  selections: PropTypes.shape({
-    selectedProvince: PropTypes.string,
-    selectedComfort: PropTypes.string,
-    selectedDay: PropTypes.string,
-    selectedLevel: PropTypes.arrayOf(PropTypes.string),
-    selectedService: PropTypes.string
-  }).isRequired
-};
+List.propTypes = listType.isRequired;

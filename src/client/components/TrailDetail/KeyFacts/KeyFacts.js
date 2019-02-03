@@ -1,22 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { keyFactsType } from '../../../utils/types';
 
 import styles from './styles.css';
 
-export default function KeyFacts(props) {
-  const {
-    connect,
-    distance,
-    duration,
-    finish,
-    level,
-    province,
-    stageDistances,
-    stages,
-    start,
-    comfort,
-  } = props;
-
+export default function KeyFacts({
+  connect,
+  distance,
+  duration,
+  finish,
+  level,
+  province,
+  stageDistances,
+  stages,
+  start,
+  comfort
+}) {
   const keyFacts = [
     {
       title: 'Province',
@@ -76,15 +74,4 @@ export default function KeyFacts(props) {
   );
 }
 
-KeyFacts.propTypes = {
-  connect: PropTypes.string.isRequired,
-  distance: PropTypes.string.isRequired,
-  duration: PropTypes.arrayOf(PropTypes.string).isRequired,
-  finish: PropTypes.string.isRequired,
-  level: PropTypes.string.isRequired,
-  province: PropTypes.string.isRequired,
-  stageDistances: PropTypes.string.isRequired,
-  stages: PropTypes.number.isRequired,
-  start: PropTypes.string.isRequired,
-  comfort: PropTypes.arrayOf(PropTypes.string).isRequired
-};
+KeyFacts.propTypes = keyFactsType.isRequired;

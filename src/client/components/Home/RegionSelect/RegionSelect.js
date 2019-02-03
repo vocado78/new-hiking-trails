@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { regionSelectType } from '../../../utils/types';
 
 import styles from './styles.css';
 import Button from '../../Button/Button';
@@ -35,12 +35,7 @@ const regions = [
   }
 ];
 
-export default function RegionSelect(props) {
-  const {
-    region,
-    onChange
-  } = props;
-
+export default function RegionSelect({ region, onChange }) {
   return (
     <form className={styles.form}>
       <select
@@ -59,7 +54,4 @@ export default function RegionSelect(props) {
   );
 }
 
-RegionSelect.propTypes = {
-  region: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
-};
+RegionSelect.propTypes = regionSelectType;

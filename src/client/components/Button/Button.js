@@ -1,16 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { buttonType } from '../../utils/types';
 
 import styles from './styles.css';
-
-export default function Button(props) {
-  const {
-    path,
-    searchString,
-    label,
-    handleClick
-  } = props;
+// eslint-disable-next-line
+export default function Button({ path, searchString, label, handleClick }) {
   const hasPath = path;
 
   if (hasPath) {
@@ -39,9 +33,4 @@ Button.defaultProps = {
   handleClick: () => {}
 };
 
-Button.propTypes = {
-  path: PropTypes.string,
-  searchString: PropTypes.string,
-  label: PropTypes.string.isRequired,
-  handleClick: PropTypes.func
-};
+Button.propTypes = buttonType;
