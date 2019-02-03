@@ -13,18 +13,21 @@ firebase.initializeApp({
   databaseURL: process.env.DATABASE_URL
 });
 
+const db = firebase.database();
+
 app.use(express.static('dist'));
 
-// app.get('/api/test-db', (req, res) => {
-//   nano.db.get('trails').then((data) => {
-//     console.log('getDB response:', data);
-//     res.send({
-//       message: data
-//     });
-//   }).catch((err) => {
-//     console.log(err);
-//   });
-// });
+app.get('/api/test-db', (req, res) => {
+  const ref = db.ref('trails/kungsleden');
+  ref.on('value', (snapshot) => {
+    console.log('getDB response:', snapshot.val());
+    res.send({
+      message: snapshot.val()
+    });
+  }, (error) => {
+    console.log('The read failed:', error.code);
+  });
+});
 
 app.get('/api/welcome', (req, res) => {
   res.send({
