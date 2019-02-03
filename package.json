@@ -33,7 +33,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "nano": "^8.0.0",
+    "firebase-admin": "^7.0.0",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
