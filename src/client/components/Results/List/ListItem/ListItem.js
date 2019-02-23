@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { listItemDataType } from '../../../../utils/types';
 
 import styles from './styles.css';
 import content from '../../../../utils/content';
 
-export default function ListItem(props) {
+export default function ListItem({ data }) {
   // eslint-disable-next-line
-  const { data: { name, distance, title } } = props;
+  const { name, distance, title } = data;
   const { results: { listItem: { bullet1 } } } = content;
   return (
     <div className={styles.listItem}>
@@ -23,31 +23,5 @@ export default function ListItem(props) {
 }
 
 ListItem.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string,
-    region: PropTypes.string,
-    province: PropTypes.string,
-    start: PropTypes.string,
-    finish: PropTypes.string,
-    startLat: PropTypes.number,
-    startLon: PropTypes.number,
-    middleLat: PropTypes.number,
-    middleLon: PropTypes.number,
-    finLat: PropTypes.number,
-    finLon: PropTypes.number,
-    distance: PropTypes.string,
-    duration: PropTypes.arrayOf(PropTypes.string),
-    complete: PropTypes.string,
-    level: PropTypes.string,
-    comfort: PropTypes.arrayOf(PropTypes.string),
-    title: PropTypes.string,
-    description: PropTypes.string,
-    landscape: PropTypes.string,
-    connect: PropTypes.string,
-    stageDistances: PropTypes.string,
-    services: PropTypes.string,
-    stages: PropTypes.number,
-    access: PropTypes.string,
-    moreInfo: PropTypes.string
-  }).isRequired
+  data: listItemDataType.isRequired
 };

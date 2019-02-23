@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { filterType } from '../../../utils/types';
 
 import styles from './styles.css';
 import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
@@ -7,27 +7,34 @@ import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 import Button from '../../Button/Button';
 import content from '../../../utils/content';
 
-export default function Filter(props) {
+export default function Filter({
+  region,
+  options,
+  selections,
+  handleClick,
+  onSelect
+}) {
   const {
-    region,
-    options: {
-      provinces,
-      services,
-      duration,
-      level,
-      comfort
-    },
-    selections: {
-      selectedProvince,
-      selectedService,
-      selectedDay,
-      selectedLevel,
-      selectedComfort
-    },
-    handleClick,
-    onSelect
-  } = props;
-  const { results: { filter: { title, subtitle } } } = content;
+    provinces,
+    services,
+    duration,
+    level,
+    comfort
+  } = options;
+  const {
+    selectedProvince,
+    selectedService,
+    selectedDay,
+    selectedLevel,
+    selectedComfort
+  } = selections;
+  const {
+    results: {
+      filter: {
+        title, subtitle
+      }
+    }
+  } = content;
 
   return (
     <form className={styles.filter}>
@@ -84,18 +91,4 @@ export default function Filter(props) {
   );
 }
 
-Filter.propTypes = {
-  region: PropTypes.string.isRequired,
-  options: PropTypes.objectOf(
-    PropTypes.arrayOf(PropTypes.string)
-  ).isRequired,
-  selections: PropTypes.shape({
-    selectedProvince: PropTypes.string,
-    selectedComfort: PropTypes.string,
-    selectedDay: PropTypes.string,
-    selectedLevel: PropTypes.arrayOf(PropTypes.string),
-    selectedService: PropTypes.string
-  }).isRequired,
-  onSelect: PropTypes.func.isRequired,
-  handleClick: PropTypes.func.isRequired
-};
+Filter.propTypes = filterType;

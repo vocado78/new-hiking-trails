@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { regionMapType } from '../../../utils/types';
 
-export default function RegionMap(props) {
+export default function RegionMap({ onMouseEnter, onMouseLeave, regionColor }) {
   // eslint-disable-next-line object-curly-newline
-  const { onMouseEnter, onMouseLeave, regionColor: { nn, sn, s, ng, sg } } = props;
+  const { nn, sn, s, ng, sg } = regionColor;
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +67,4 @@ export default function RegionMap(props) {
   );
 }
 
-RegionMap.propTypes = {
-  onMouseEnter: PropTypes.func.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  regionColor: PropTypes.objectOf(PropTypes.string).isRequired
-};
+RegionMap.propTypes = regionMapType;

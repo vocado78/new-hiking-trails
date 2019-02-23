@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { pageTitleType } from '../../utils/types';
 
 import styles from './styles.css';
 
-export default function PageTitle(props) {
-  const { title, page } = props;
+export default function PageTitle({ title, page }) {
   return (
     <h2 className={styles.pageTitle}>
       <span>{page}</span>
@@ -14,7 +13,4 @@ export default function PageTitle(props) {
   );
 }
 
-PageTitle.propTypes = {
-  title: PropTypes.string.isRequired,
-  page: PropTypes.string.isRequired
-};
+PageTitle.propTypes = pageTitleType;
