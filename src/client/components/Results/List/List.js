@@ -46,8 +46,7 @@ export default function List({
           .map(trail => (
             <Link
               to={{
-                pathname: './results/trail-details',
-                search: `'?name='${trail.name}`,
+                pathname: `./results/trail-details/${trail.name}`,
                 state: trail
               }}
               key={trail.name}

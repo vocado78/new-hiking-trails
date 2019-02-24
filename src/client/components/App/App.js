@@ -20,7 +20,7 @@ export default class App extends React.Component {
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route exact path="/results" component={Results} />
-          <Route path="/results/trail-details" component={TrailDetail} />
+          <Route path="/results/trail-details/:id" component={TrailDetail} />
           <Footer />
         </div>
       </Router>
