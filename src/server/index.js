@@ -1,5 +1,7 @@
 const express = require('express');
 const firebase = require('firebase-admin');
+const path = require('path');
+const renderRouteMiddleware = require('../renderRouteMiddleware');
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
@@ -14,8 +16,9 @@ firebase.initializeApp({
 });
 
 const db = firebase.database();
+const buildPath = path.join(__dirname, '../../', 'dist');
 
-app.use(express.static('dist'));
+app.use('/', express.static(buildPath));
 
 app.get('/api/test-db', (req, res) => {
   const ref = db.ref('trails/kungsleden');
@@ -34,6 +37,8 @@ app.get('/api/welcome', (req, res) => {
     message: 'Welcome to my home!'
   });
 });
+
+app.get('*', renderRouteMiddleware);
 
 app.listen(8080, () => {
   console.log('Server listening on port 8080');
