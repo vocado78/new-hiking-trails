@@ -1,5 +1,5 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
 
@@ -41,9 +41,9 @@ const config = {
     port: 3000,
     historyApiFallback: true
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/client/index.html'
-  })],
+  // plugins: [new HtmlWebpackPlugin({
+  //   template: 'src/client/index.html'
+  // })],
   mode: 'development'
 };
 
