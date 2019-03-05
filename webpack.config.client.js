@@ -4,7 +4,7 @@ const combineLoaders = require('webpack-combine-loaders');
 module.exports = {
   name: 'client',
   context: path.join(__dirname, 'src', 'client'),
-  entry: '.index.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',

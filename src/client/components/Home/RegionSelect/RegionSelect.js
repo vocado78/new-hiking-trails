@@ -2,7 +2,7 @@ import React from 'react';
 import { regionSelectType } from '../../../utils/types';
 
 import styles from './styles.css';
-import Button from '../../Button/Button';
+// import Button from '../../Button/Button';
 
 const regions = [
   {
@@ -45,11 +45,12 @@ export default function RegionSelect({ region, onChange }) {
       >
         {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
       </select>
-      <Button
+      <button type="button">Go</button>
+      {/* <Button
         path="/results"
         searchString={`?region=${region}`}
         label="Go"
-      />
+      /> */}
     </form>
   );
 }

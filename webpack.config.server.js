@@ -29,6 +29,10 @@ module.exports = {
           localIdentName: '[name]__[local]___[hash:base64:5]',
           exportOnlyLocals: true
         }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader']
       }
     ]
   },

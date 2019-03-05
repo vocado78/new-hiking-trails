@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 import styles from './styles.css';
 import content from '../../utils/content';
@@ -11,19 +11,22 @@ export default function Navbar() {
       <h1>{title}</h1>
       <ul className={styles.navList}>
         <li>
-          <NavLink exact activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/">
+          Home
+          {/* <NavLink exact activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/">
             Home
-          </NavLink>
+          </NavLink> */}
         </li>
         <li>
-          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/about">
+          About
+          {/* <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/about">
             About
-          </NavLink>
+          </NavLink> */}
         </li>
         <li>
-          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/contact">
+          Contact
+          {/* <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/contact">
             Contact
-          </NavLink>
+          </NavLink> */}
         </li>
       </ul>
     </div>
