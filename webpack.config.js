@@ -1,20 +1,22 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
-const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 
-const config = {
-  entry: './src/client/index.js',
+const client = {
+  name: 'client',
+  context: path.join(__dirname, 'src', 'client'),
+  entry: '.index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/dist'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        include: path.join(__dirname, 'src', 'client'),
+        exclude: path.join(__dirname, 'node_modules'),
         use: 'babel-loader'
       },
       {
@@ -41,21 +43,43 @@ const config = {
     port: 3000,
     historyApiFallback: true
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/client/index.html'
-  })],
   mode: 'development'
 };
 
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+const server = {
+  name: 'SSR',
+  context: path.join(__dirname, 'src', 'client'),
+  entry: './SSR.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'SSR.js',
+    libraryTarget: 'commonjs2',
+    publicPath: '/dist'
+  },
+  target: 'node',
+  externals: nodeExternals(),
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: path.join(__dirname, 'src', 'client'),
+        exclude: path.join(__dirname, 'node_modules'),
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+          exportOnlyLocals: true
+        }
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
+    ]
+  },
+};
 
-module.exports = config;
+module.exports = {
+  client,
+  server
+};
