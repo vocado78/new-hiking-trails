@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-start": "concurrently \"npm run server\" \"npm run client\"",
-    "client": "webpack-dev-server --open --devtool inline-source-map --hot",
-    "server": "nodemon src/server/index.js",
-    "build": "set NODE_ENV='production'& webpack -p",
+    "dev-build": "webpack --config ./webpack.config.server.js",
+    "dev-start": "npm run dev-build && babel-node -- src/server/index.js",
+    "prod-build": "set NODE_ENV='production'& webpack -p",
     "deploy": "npm run build && firebase deploy",
     "firebase-init": "firebase login && firebase init"
   },

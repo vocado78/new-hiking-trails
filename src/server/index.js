@@ -2,7 +2,7 @@
 const express = require('express');
 const firebase = require('firebase-admin');
 const webpack = require('webpack');
-const webpackClientConfig = require('../../webpack.config').client;
+const webpackClientConfig = require('../../webpack.config.client');
 const render = require('../../dist/SSR');
 
 const app = express();
