@@ -1,8 +1,13 @@
+/* eslint-disable */
 const express = require('express');
 const firebase = require('firebase-admin');
+const webpack = require('webpack');
+const webpackClientConfig = require('../../webpack.config').client;
+const render = require('../../dist/SSR');
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
+const compiler = webpack(webpackClientConfig);
 
 firebase.initializeApp({
   credential: firebase.credential.cert({
@@ -15,7 +20,13 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
-app.use(express.static('dist'));
+// app.use(express.static('dist'));
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: webpackClientConfig.output.publicPath,
+}));
+
+app.get('/', render.default);
 
 app.get('/api/test-db', (req, res) => {
   const ref = db.ref('trails/kungsleden');
@@ -35,6 +46,6 @@ app.get('/api/welcome', (req, res) => {
   });
 });
 
-app.listen(8080, () => {
-  console.log('Server listening on port 8080');
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
 });
