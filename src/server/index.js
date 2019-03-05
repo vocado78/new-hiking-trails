@@ -20,9 +20,9 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
-// app.use(express.static('dist'));
+app.use(express.static('dist'));
 app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
+  serverSideRender: true,
   publicPath: webpackClientConfig.output.publicPath,
 }));
 

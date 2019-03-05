@@ -1,5 +1,6 @@
 const path = require('path');
-const combineLoaders = require('webpack-combine-loaders');
+// const combineLoaders = require('webpack-combine-loaders');
+const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
 module.exports = {
   name: 'client',
@@ -8,7 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist'
+    publicPath: '/dist/'
   },
   module: {
     rules: [
@@ -20,17 +21,26 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: combineLoaders([
+        use: [
           {
-            loader: 'style-loader'
-          }, {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+            loader: ExtractCssChunks.loader,
+            options: {
+              modules: true
             }
-          }
-        ])
+          },
+          'css-loader'
+        ]
+        // loader: combineLoaders([
+        //   {
+        //     loader: 'style-loader'
+        //   }, {
+        //     loader: 'css-loader',
+        //     query: {
+        //       modules: true,
+        //       localIdentName: '[name]__[local]___[hash:base64:5]'
+        //     }
+        //   }
+        // ])
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -38,5 +48,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new ExtractCssChunks(
+      {
+        filename: 'client.css',
+        orderWarning: true // Disable to remove warnings about conflicting order between imports
+      }
+    ),
+  ],
   mode: 'development'
 };
