@@ -4,7 +4,7 @@ const firebase = require('firebase-admin');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const StaticRouter = require('react-router-dom').StaticRouter;
-const App = require('../../src/client/components/App/App');
+const App = require('../../src/client/components/App/App').default;
 // const webpack = require('webpack');
 // const webpackClientConfig = require('../../webpack.config.client');
 // const render = require('../../dist/SSR');
@@ -24,7 +24,7 @@ const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n--
 
 // const db = firebase.database();
 
-app.use('/static', express.static('dist'));
+app.use(express.static('dist'));
 // app.use(require('webpack-dev-middleware')(compiler, {
 //   serverSideRender: true,
 //   publicPath: webpackClientConfig.output.publicPath,
@@ -32,7 +32,7 @@ app.use('/static', express.static('dist'));
 
 // app.get('/', render.default);
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
   const context = {};
 
   const component = ReactDOMServer.renderToString(
@@ -51,7 +51,7 @@ app.get('/*', (req, res) => {
     <body>
       <div id="app">${component}</div>
     </body>
-    <script src="/static/bundle.js"></script>
+    <script src="bundle.js"></script>
   </html>
   `;
 
@@ -84,4 +84,5 @@ app.get('/api/welcome', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
+  console.log(App);
 });

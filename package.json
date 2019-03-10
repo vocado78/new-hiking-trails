@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev-build": "webpack --config ./webpack.config.server.js",
-    "dev": "webpack && npm run copy_static_assets && concurrently \"webpack --watch\" \"nodemon dist\"",
+    "dev": "webpack && concurrently \"webpack --watch\" \"nodemon dist\"",
     "prod-build": "set NODE_ENV='production'& webpack -p",
     "deploy": "npm run build && firebase deploy",
-    "firebase-init": "firebase login && firebase init",
-    "copy_static_assets": "node copyStaticAssets.js"
+    "firebase-init": "firebase login && firebase init"
   },
   "babel": {
     "presets": [

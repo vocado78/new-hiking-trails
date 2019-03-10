@@ -17,7 +17,6 @@ export default function Welcome() {
           path="/about"
           label="Read More"
         />
-        <button type="button">Read More</button>
       </div>
       <div className={styles.welcomeImage}>
         {/* TODO: add <img /> */}

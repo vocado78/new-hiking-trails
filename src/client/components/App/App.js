@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import styles from './styles.css';
 import Navbar from '../Navbar/Navbar';
@@ -13,14 +10,12 @@ import TrailDetail from '../TrailDetail/TrailDetail';
 
 export default function App() {
   return (
-    <Router>
-      <div className={styles.app}>
-        <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/results" component={Results} />
-        <Route path="/results/trail-details/:id" component={TrailDetail} />
-        <Footer />
-      </div>
-    </Router>
+    <div className={styles.app}>
+      <Navbar />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/results" component={Results} />
+      <Route path="/results/trail-details/:id" component={TrailDetail} />
+      <Footer />
+    </div>
   );
 }
