@@ -1,6 +1,7 @@
 /* eslint-disable */
 const express = require('express');
 const firebase = require('firebase-admin');
+const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const StaticRouter = require('react-router-dom').StaticRouter;
 const App = require('../../src/client/components/App/App');
