@@ -1,44 +1,79 @@
 /* eslint-disable */
 const express = require('express');
 const firebase = require('firebase-admin');
-const webpack = require('webpack');
-const webpackClientConfig = require('../../webpack.config.client');
-const render = require('../../dist/SSR');
+const ReactDOMServer = require('react-dom/server');
+const StaticRouter = require('react-router-dom').StaticRouter;
+const App = require('../../src/client/components/App/App');
+// const webpack = require('webpack');
+// const webpackClientConfig = require('../../webpack.config.client');
+// const render = require('../../dist/SSR');
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
-const compiler = webpack(webpackClientConfig);
+// const compiler = webpack(webpackClientConfig);
 
-firebase.initializeApp({
-  credential: firebase.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: privateKey.replace(/\\n/g, '\n')
-  }),
-  databaseURL: process.env.DATABASE_URL
+// firebase.initializeApp({
+//   credential: firebase.credential.cert({
+//     projectId: process.env.FIREBASE_PROJECT_ID,
+//     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+//     privateKey: privateKey.replace(/\\n/g, '\n')
+//   }),
+//   databaseURL: process.env.DATABASE_URL
+// });
+
+// const db = firebase.database();
+
+app.use('/static', express.static('dist'));
+// app.use(require('webpack-dev-middleware')(compiler, {
+//   serverSideRender: true,
+//   publicPath: webpackClientConfig.output.publicPath,
+// }));
+
+// app.get('/', render.default);
+
+app.get('/*', (req, res) => {
+  const context = {};
+
+  const component = ReactDOMServer.renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <App />
+    </StaticRouter>
+  );
+
+  const html = `
+  <!DOCTYLE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Hiking Sweden</title>
+    </head>
+    <body>
+      <div id="app">${component}</div>
+    </body>
+    <script src="/static/bundle.js"></script>
+  </html>
+  `;
+
+  if (context.url) {
+    res.writeHead(301, { Location: context.url });
+    res.end();
+  } else {
+    res.send(html);
+  }
+
 });
 
-const db = firebase.database();
-
-app.use(express.static('dist'));
-app.use(require('webpack-dev-middleware')(compiler, {
-  serverSideRender: true,
-  publicPath: webpackClientConfig.output.publicPath,
-}));
-
-app.get('/', render.default);
-
-app.get('/api/test-db', (req, res) => {
-  const ref = db.ref('trails/kungsleden');
-  ref.on('value', (snapshot) => {
-    console.log('getDB response:', snapshot.val());
-    res.send({
-      message: snapshot.val()
-    });
-  }, (error) => {
-    console.log('The read failed:', error.code);
-  });
-});
+// app.get('/api/test-db', (req, res) => {
+//   const ref = db.ref('trails/kungsleden');
+//   ref.on('value', (snapshot) => {
+//     console.log('getDB response:', snapshot.val());
+//     res.send({
+//       message: snapshot.val()
+//     });
+//   }, (error) => {
+//     console.log('The read failed:', error.code);
+//   });
+// });
 
 app.get('/api/welcome', (req, res) => {
   res.send({
