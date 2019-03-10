@@ -5,13 +5,9 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const StaticRouter = require('react-router-dom').StaticRouter;
 const App = require('../../src/client/components/App/App').default;
-// const webpack = require('webpack');
-// const webpackClientConfig = require('../../webpack.config.client');
-// const render = require('../../dist/SSR');
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
-// const compiler = webpack(webpackClientConfig);
 
 // firebase.initializeApp({
 //   credential: firebase.credential.cert({
@@ -25,12 +21,6 @@ const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n--
 // const db = firebase.database();
 
 app.use(express.static('dist'));
-// app.use(require('webpack-dev-middleware')(compiler, {
-//   serverSideRender: true,
-//   publicPath: webpackClientConfig.output.publicPath,
-// }));
-
-// app.get('/', render.default);
 
 app.get('/', (req, res) => {
   const context = {};
@@ -84,5 +74,4 @@ app.get('/api/welcome', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
-  console.log(App);
 });
