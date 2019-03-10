@@ -1,20 +1,63 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+const combineLoaders = require('webpack-combine-loaders');
 
-const config = {
-  entry: './src/client/index.js',
+const serverConfig = {
+  mode: 'development',
+  target: 'node',
+  node: {
+    __dirname: false
+  },
+  entry: {
+    'index.js': path.resolve(__dirname, 'src/server/index.js')
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: '[name]',
+    libraryTarget: 'commonjs2'
+  },
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: path.join(__dirname, 'node_modules'),
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+          exportOnlyLocals: true
+        }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: 'file-loader'
+      }
+    ]
+  }
+};
+
+const clientConfig = {
+  mode: 'development',
+  target: 'web',
+  entry: {
+    'index.js': path.resolve(__dirname, 'src/client/index.js')
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        include: path.join(__dirname, 'src', 'client'),
+        exclude: path.join(__dirname, 'node_modules'),
         use: 'babel-loader'
       },
       {
@@ -33,29 +76,10 @@ const config = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
+        use: 'file-loader'
       }
     ]
   },
-  devServer: {
-    port: 3000,
-    historyApiFallback: true
-  },
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/client/index.html'
-  })],
-  mode: 'development'
 };
 
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
-
-module.exports = config;
+module.exports = [serverConfig, clientConfig];
