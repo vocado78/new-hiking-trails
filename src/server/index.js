@@ -54,15 +54,15 @@ app.get('/', (req, res) => {
 
 });
 
-app.get('/api/test-db', (req, res) => {
-  const ref = db.ref('trails/kungsleden');
+app.get('/api/trails', (req, res) => {
+  const ref = db.ref('trails');
   ref.on('value', (snapshot) => {
-    console.log('getDB response:', snapshot.val());
+    console.log('getDB response:', snapshot.val().bergslagsleden);
     res.send({
       message: snapshot.val()
     });
   }, (error) => {
-    console.log('The read failed:', error.code);
+    console.log('An error occurred fetching data from the db:', error.code, error.message);
   });
 });
 
