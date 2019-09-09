@@ -50,9 +50,9 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { location: { search } } = this.props;
+    const { location: { search, state: trailList } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const trails = region === 'all' ? showAllTrails(trailList) : filterByRegion(trailList, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({
@@ -66,9 +66,9 @@ export default class Results extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { location: { search } } = nextProps;
+    const { location: { search, state: trailList } } = nextProps;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const trails = region === 'all' ? showAllTrails(trailList) : filterByRegion(trailList, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({
