@@ -43,16 +43,14 @@ const filterOptions = {
   comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
 };
 
-const filterByRegion = (trailList, region) => {
-  const trailListToArray = Object.values(trailList);
-  const results = trailListToArray.filter(trail => trail.region === region);
+const trailDataToArray = trailData => Object.values(trailData);
+
+const filterByRegion = (trailData, region) => {
+  const results = trailDataToArray(trailData).filter(trail => trail.region === region);
   return results;
 };
 
-const showAllTrails = (trailList) => {
-  const trailListToArray = Object.values(trailList);
-  return trailListToArray;
-};
+const showAllTrails = trailData => trailDataToArray(trailData);
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 

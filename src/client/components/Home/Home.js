@@ -19,7 +19,7 @@ export default class Home extends Component {
         ng: '#bfbfbf',
         sg: '#bfbfbf'
       },
-      trailList: {}
+      trailData: {}
     };
   }
 
@@ -31,11 +31,11 @@ export default class Home extends Component {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Thre was a network failure reading from the db.');
+        throw new Error('There was a network failure reading from the db.');
       })
-      .then((trailList) => {
+      .then((trailData) => {
         this.setState({
-          trailList
+          trailData
         });
       })
       .catch(error => `An error occurred fetching trail data: ${error.message}`);
@@ -63,7 +63,7 @@ export default class Home extends Component {
 
   render() {
     // eslint-disable-next-line object-curly-newline
-    const { region, regionColor, trailList } = this.state;
+    const { region, regionColor, trailData } = this.state;
     return (
       <div>
         <div className={styles.banner}>
@@ -73,7 +73,7 @@ export default class Home extends Component {
               <RegionSelect
                 onChange={this.handleSelect}
                 region={region}
-                trailList={trailList}
+                trailData={trailData}
               />
             </div>
             <div className={styles.regionMap}>
