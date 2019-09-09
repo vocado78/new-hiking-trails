@@ -8,6 +8,10 @@
 }
 
 /* To override user agent stylesheets */
+body {
+  margin: 0;
+}
+
 ul {
   padding: 0;
   margin: 0;

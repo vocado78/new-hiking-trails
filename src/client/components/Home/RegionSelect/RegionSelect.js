@@ -35,7 +35,7 @@ const regions = [
   }
 ];
 
-export default function RegionSelect({ region, onChange }) {
+export default function RegionSelect({ region, onChange, trailData }) {
   return (
     <form className={styles.form}>
       <select
@@ -49,6 +49,7 @@ export default function RegionSelect({ region, onChange }) {
         path="/results"
         searchString={`?region=${region}`}
         label="Go"
+        state={trailData}
       />
     </form>
   );

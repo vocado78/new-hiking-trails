@@ -4,7 +4,7 @@ import { buttonType } from '../../utils/types';
 
 import styles from './styles.css';
 // eslint-disable-next-line
-export default function Button({ path, searchString, label, handleClick }) {
+export default function Button({ path, searchString, label, handleClick, state }) {
   const hasPath = path;
 
   if (hasPath) {
@@ -13,7 +13,8 @@ export default function Button({ path, searchString, label, handleClick }) {
         className={styles.btnLink}
         to={{
           pathname: path,
-          search: searchString
+          search: searchString,
+          state
         }}
       >
         {label}
@@ -30,7 +31,8 @@ export default function Button({ path, searchString, label, handleClick }) {
 Button.defaultProps = {
   searchString: '',
   path: '',
-  handleClick: () => {}
+  handleClick: () => {},
+  state: {}
 };
 
 Button.propTypes = buttonType;

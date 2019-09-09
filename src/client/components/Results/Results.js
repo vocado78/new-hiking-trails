@@ -15,13 +15,15 @@ import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
 import content from '../../utils/content';
+import { listItemDataType } from '../../utils/types';
 
 
 export default class Results extends React.Component {
   static propTypes = {
-    location: PropTypes.objectOf(
-      PropTypes.string
-    ).isRequired
+    location: PropTypes.shape({
+      search: PropTypes.string,
+      state: PropTypes.objectOf(listItemDataType)
+    }).isRequired
   }
 
   constructor(props) {
@@ -50,9 +52,9 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { location: { search } } = this.props;
+    const { location: { search, state: trailData } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({
@@ -66,9 +68,9 @@ export default class Results extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { location: { search } } = nextProps;
+    const { location: { search, state: trailData } } = nextProps;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({

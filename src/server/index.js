@@ -54,21 +54,12 @@ app.get('/', (req, res) => {
 
 });
 
-app.get('/api/test-db', (req, res) => {
-  const ref = db.ref('trails/kungsleden');
+app.get('/api/trails', (req, res) => {
+  const ref = db.ref('trails');
   ref.on('value', (snapshot) => {
-    console.log('getDB response:', snapshot.val());
-    res.send({
-      message: snapshot.val()
-    });
+    res.send(snapshot.val());
   }, (error) => {
-    console.log('The read failed:', error.code);
-  });
-});
-
-app.get('/api/welcome', (req, res) => {
-  res.send({
-    message: 'Welcome to my home!'
+    console.error(`An error occurred reading from db: ${error.code}, ${error.message}`);
   });
 });
 
