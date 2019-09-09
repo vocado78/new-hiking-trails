@@ -29,7 +29,6 @@ export default class Home extends Component {
     fetch(`${root}api/trails`)
       .then((response) => {
         if (response.ok) {
-          // console.log(response.json());
           return response.json();
         }
         throw new Error('Thre was a network failure reading from the db.');
@@ -39,12 +38,11 @@ export default class Home extends Component {
           trailList
         });
       })
-      .catch(error => `An error occurred fetching trail data from the db: ${error.message}`);
+      .catch(error => `An error occurred fetching trail data: ${error.message}`);
   }
 
   handleSelect = (event) => {
     this.setState({ region: event.target.value });
-    console.log(event.target.value);
   }
 
   handleMouseEnter = (id) => {

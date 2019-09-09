@@ -36,7 +36,6 @@ const regions = [
 ];
 
 export default function RegionSelect({ region, onChange, trailList }) {
-  // console.log(trailList);
   return (
     <form className={styles.form}>
       <select

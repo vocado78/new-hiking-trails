@@ -57,16 +57,9 @@ app.get('/', (req, res) => {
 app.get('/api/trails', (req, res) => {
   const ref = db.ref('trails');
   ref.on('value', (snapshot) => {
-    console.log('getDB response:', snapshot.val().bergslagsleden);
     res.send(snapshot.val());
   }, (error) => {
-    console.log('An error occurred fetching data from the db:', error.code, error.message);
-  });
-});
-
-app.get('/api/welcome', (req, res) => {
-  res.send({
-    message: 'Welcome to my home!'
+    console.error(`An error occurred reading from db: ${error.code}, ${error.message}`);
   });
 });
 
