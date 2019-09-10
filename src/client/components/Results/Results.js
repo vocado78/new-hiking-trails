@@ -15,14 +15,13 @@ import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
 import content from '../../utils/content';
-import { listItemDataType } from '../../utils/types';
+import { TrailContext } from '../TrailStore/TrailContext';
 
 
-export default class Results extends React.Component {
+class Results extends React.Component {
   static propTypes = {
     location: PropTypes.shape({
-      search: PropTypes.string,
-      state: PropTypes.objectOf(listItemDataType)
+      search: PropTypes.string
     }).isRequired
   }
 
@@ -52,9 +51,9 @@ export default class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { location: { search, state: trailData } } = this.props;
+    const { location: { search } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
+    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({
@@ -68,9 +67,9 @@ export default class Results extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { location: { search, state: trailData } } = nextProps;
+    const { location: { search } } = nextProps;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
+    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
     this.setState(prevState => ({
@@ -119,9 +118,9 @@ export default class Results extends React.Component {
   }
 
   handleClick = () => {
-    const { location: { search, state: trailData } } = this.props;
+    const { location: { search } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
+    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
     const {
       services, duration, level, comfort
@@ -178,3 +177,7 @@ export default class Results extends React.Component {
     );
   }
 }
+
+Results.contextType = TrailContext;
+
+export default Results;

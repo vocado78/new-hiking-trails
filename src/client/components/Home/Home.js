@@ -19,27 +19,8 @@ export default class Home extends Component {
         svealand: '#bfbfbf',
         'northern-gotaland': '#bfbfbf',
         'southern-gotaland': '#bfbfbf'
-      },
-      trailData: {}
+      }
     };
-  }
-
-  componentDidMount() {
-    const root = window.location.href;
-
-    fetch(`${root}api/trails`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('There was a network failure reading from the db.');
-      })
-      .then((trailData) => {
-        this.setState({
-          trailData
-        });
-      })
-      .catch(error => `An error occurred fetching trail data: ${error.message}`);
   }
 
   handleSelect = (event) => {
@@ -66,7 +47,8 @@ export default class Home extends Component {
 
   render() {
     // eslint-disable-next-line object-curly-newline
-    const { region, regionColor, trailData } = this.state;
+    const { region, regionColor } = this.state;
+
     return (
       <div>
         <div className={styles.banner}>
@@ -76,15 +58,13 @@ export default class Home extends Component {
               <RegionSelect
                 onChange={this.handleSelect}
                 region={region}
-                trailData={trailData}
               />
             </div>
             <div className={styles.regionMap}>
               <Link
                 to={{
                   pathname: '/results',
-                  search: `?region=${region}`,
-                  state: trailData
+                  search: `?region=${region}`
                 }}
               >
                 <RegionMap
@@ -101,5 +81,3 @@ export default class Home extends Component {
     );
   }
 }
-
-// this.handleSelect = this.handleSelect.bind(this);
