@@ -4,13 +4,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './components/App/App';
 
-const Wrap = () => {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-}
+const Wrap = () => (
+  <Router>
+    <App />
+  </Router>
+);
 
 ReactDOM.hydrate(
   <Wrap />,

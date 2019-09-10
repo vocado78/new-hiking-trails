@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
 import RegionSelect from './RegionSelect/RegionSelect';
@@ -13,11 +14,11 @@ export default class Home extends Component {
     this.state = {
       region: '',
       regionColor: {
-        nn: '#bfbfbf',
-        sn: '#bfbfbf',
-        s: '#bfbfbf',
-        ng: '#bfbfbf',
-        sg: '#bfbfbf'
+        'northern-norrland': '#bfbfbf',
+        'southern-norrland': '#bfbfbf',
+        svealand: '#bfbfbf',
+        'northern-gotaland': '#bfbfbf',
+        'southern-gotaland': '#bfbfbf'
       },
       trailData: {}
     };
@@ -47,6 +48,7 @@ export default class Home extends Component {
 
   handleMouseEnter = (id) => {
     this.setState({
+      region: id,
       regionColor: {
         [id]: '#b3003b'
       }
@@ -55,6 +57,7 @@ export default class Home extends Component {
 
   handleMouseLeave = (id) => {
     this.setState({
+      region: '',
       regionColor: {
         [id]: '#bfbfbf'
       }
@@ -77,11 +80,19 @@ export default class Home extends Component {
               />
             </div>
             <div className={styles.regionMap}>
-              <RegionMap
-                regionColor={regionColor}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
-              />
+              <Link
+                to={{
+                  pathname: '/results',
+                  search: `?region=${region}`,
+                  state: trailData
+                }}
+              >
+                <RegionMap
+                  regionColor={regionColor}
+                  onMouseEnter={this.handleMouseEnter}
+                  onMouseLeave={this.handleMouseLeave}
+                />
+              </Link>
             </div>
           </div>
         </div>

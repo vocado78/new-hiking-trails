@@ -119,9 +119,9 @@ export default class Results extends React.Component {
   }
 
   handleClick = () => {
-    const { location: { search } } = this.props;
+    const { location: { search, state: trailData } } = this.props;
     const region = queryString.parse(search).region || 'all';
-    const trails = region === 'all' ? showAllTrails() : filterByRegion(region);
+    const trails = region === 'all' ? showAllTrails(trailData) : filterByRegion(trailData, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
     const {
       services, duration, level, comfort
