@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
     <head>
       <meta charset="utf-8">
       <title>Hiking Sweden</title>
+      <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
       <div id="app">${component}</div>

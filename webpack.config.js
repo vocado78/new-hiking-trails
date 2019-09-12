@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const combineLoaders = require('webpack-combine-loaders');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const serverConfig = {
   mode: 'development',
@@ -27,19 +27,31 @@ const serverConfig = {
       },
       {
         test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]',
-          exportOnlyLocals: true
-        }
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: 'file-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    }),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
+  ]
 };
 
 const clientConfig = {
@@ -62,17 +74,16 @@ const clientConfig = {
       },
       {
         test: /\.css$/,
-        loader: combineLoaders([
+        use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: 'style-loader'
-          }, {
             loader: 'css-loader',
             query: {
               modules: true,
               localIdentName: '[name]__[local]___[hash:base64:5]'
             }
           }
-        ])
+        ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
@@ -80,6 +91,9 @@ const clientConfig = {
       }
     ]
   },
+  plugins: [
+    new MiniCssExtractPlugin({})
+  ]
 };
 
 module.exports = [serverConfig, clientConfig];
