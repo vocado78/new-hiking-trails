@@ -23,10 +23,6 @@ export default class Home extends Component {
     };
   }
 
-  handleSelect = (event) => {
-    this.setState({ region: event.target.value });
-  }
-
   handleMouseEnter = (id) => {
     this.setState({
       region: id,
@@ -55,10 +51,7 @@ export default class Home extends Component {
           <div className={styles.bannerContentContainer}>
             <div className={styles.bannerText}>
               <BannerText />
-              <RegionSelect
-                onChange={this.handleSelect}
-                region={region}
-              />
+              <RegionSelect />
             </div>
             <div className={styles.regionMap}>
               <Link
