@@ -3,16 +3,14 @@
   flex-direction: column;
   padding: 10px 10px 25px;
   margin-bottom: 100px;
-  background-color: #ffffff;
-  border-radius: 0 0 5px 5px;
-  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0 2px 3px rgba(0,0,0,0.3);
-  box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+  background-image: url("./texture.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .keyFacts > h3 {
   font-weight: 600;
-  color: #cc0099;
+  color: #b3003b;
 }
 
 .keyFacts > ul {
