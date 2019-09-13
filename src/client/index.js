@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './components/App/App';
+import TrailStore from './components/TrailStore/TrailStore';
 
-const Wrap = () => {
-  return (
-    <Router>
+const Wrap = () => (
+  <Router>
+    <TrailStore>
       <App />
-    </Router>
-  );
-}
+    </TrailStore>
+  </Router>
+);
 
 ReactDOM.hydrate(
   <Wrap />,

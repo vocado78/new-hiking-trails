@@ -1,58 +1,39 @@
-import React from 'react';
-import { regionSelectType } from '../../../utils/types';
+import React, { Component } from 'react';
+import { regions } from './helpers';
 
 import styles from './styles.css';
 import Button from '../../Button/Button';
 
-const regions = [
-  {
-    label: 'Please select region',
-    value: ''
-  },
-  {
-    label: 'Northern Norrland',
-    value: 'northern-norrland'
-  },
-  {
-    label: 'Southern Norrland',
-    value: 'southern-norrland'
-  },
-  {
-    label: 'Svealand',
-    value: 'svealand'
-  },
-  {
-    label: 'Northern Götaland',
-    value: 'northern-gotaland'
-  },
-  {
-    label: 'Southern Götaland',
-    value: 'southern-gotaland'
-  },
-  {
-    label: 'Show all',
-    value: 'all'
+export default class RegionSelect extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      region: ''
+    };
   }
-];
 
-export default function RegionSelect({ region, onChange, trailData }) {
-  return (
-    <form className={styles.form}>
-      <select
-        className={styles.select}
-        value={region}
-        onChange={onChange}
-      >
-        {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
-      </select>
-      <Button
-        path="/results"
-        searchString={`?region=${region}`}
-        label="Go"
-        state={trailData}
-      />
-    </form>
-  );
+  handleSelect = (event) => {
+    this.setState({ region: event.target.value });
+  }
+
+  render() {
+    const { region } = this.state;
+
+    return (
+      <form className={styles.form}>
+        <select
+          className={styles.select}
+          value={region}
+          onChange={this.handleSelect}
+        >
+          {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
+        </select>
+        <Button
+          path="/results"
+          searchString={`?region=${region}`}
+          label="Go"
+        />
+      </form>
+    );
+  }
 }
-
-RegionSelect.propTypes = regionSelectType;

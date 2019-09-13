@@ -19,9 +19,3 @@
   margin: 0 auto;
   display: flex;
 }
-
-.regionMap {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
