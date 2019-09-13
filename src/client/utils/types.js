@@ -9,17 +9,6 @@ export const buttonType = {
   handleClick: func
 };
 
-export const regionMapType = {
-  onMouseEnter: func.isRequired,
-  onMouseLeave: func.isRequired,
-  regionColor: objectOf(string).isRequired
-};
-
-export const regionSelectType = {
-  region: string.isRequired,
-  onChange: func.isRequired
-};
-
 export const pageTitleType = {
   title: string.isRequired,
   page: string.isRequired
