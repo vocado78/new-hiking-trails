@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { TrailContext } from './TrailContext';
+import fetchTrails from '../../../shared/api';
 
 export default class TrailStore extends Component {
   constructor(props) {
@@ -10,21 +12,12 @@ export default class TrailStore extends Component {
   }
 
   componentDidMount() {
-    const root = window.location.href;
-
-    fetch(`${root}api/trails`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error('There was a network failure reading from the db.');
-      })
+    fetchTrails()
       .then((trailData) => {
         this.setState({
           trailData
         });
-      })
-      .catch(error => `An error occurred fetching trail data: ${error.message}`);
+      });
   }
 
   render() {

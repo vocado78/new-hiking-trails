@@ -48,7 +48,7 @@ export default class TrailDetail extends Component {
     return (
       <div className={styles.detailContainer}>
         <PageTitle
-          page="Trail details"
+          page="Trail Details"
           title={name}
         />
         <div className={styles.detailTextMapContainer}>

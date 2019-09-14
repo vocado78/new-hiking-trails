@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import queryString from 'query-string';
+// import queryString from 'query-string';
 
 import styles from './styles.css';
 import {
@@ -30,11 +30,19 @@ class Results extends React.Component {
     const {
       services, duration, level, comfort
     } = filterOptions;
+    let trails;
+    let test;
+
+    if (!__isBrowser__) {
+      trails = this.props.staticContext.trailData;
+      test = 'testing';
+    }
+
     this.state = {
-      results: [],
-      name: '',
+      results: trails || [], // needed SSR
+      name: test || '', // needed SSR
       options: {
-        provinces: [],
+        provinces: [], // needed SSR
         services,
         duration,
         level,
@@ -51,8 +59,8 @@ class Results extends React.Component {
   }
 
   componentDidMount() {
-    const { location: { search } } = this.props;
-    const region = queryString.parse(search).region || 'all';
+    // const { location: { search } } = this.props;
+    const region = window.location.pathname.split('/').pop() || 'all';
     const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
@@ -67,8 +75,8 @@ class Results extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { location: { search } } = nextProps;
-    const region = queryString.parse(search).region || 'all';
+    // const { location: { search } } = nextProps;
+    const region = window.location.pathname.split('/').pop() || 'all';
     const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
 
@@ -118,8 +126,8 @@ class Results extends React.Component {
   }
 
   handleClick = () => {
-    const { location: { search } } = this.props;
-    const region = queryString.parse(search).region || 'all';
+    // const { location: { search } } = this.props;
+    const region = window.location.pathname.split('/').pop() || 'all';
     const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
     const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
     const {

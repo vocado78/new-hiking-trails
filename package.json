@@ -26,8 +26,10 @@
   },
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "firebase-admin": "^7.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
     "react": "^16.7.0",

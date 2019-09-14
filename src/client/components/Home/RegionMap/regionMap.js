@@ -52,8 +52,7 @@ export default class RegionMap extends Component {
       <div className={styles.regionMap}>
         <Link
           to={{
-            pathname: '/results',
-            search: `?region=${region}`
+            pathname: `/results/${region}`
           }}
         >
           <svg
