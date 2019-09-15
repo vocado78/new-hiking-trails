@@ -7,7 +7,7 @@ import Description from './Description/Description';
 import KeyFacts from './KeyFacts/KeyFacts';
 import Button from '../Button/Button';
 import styles from './styles.css';
-import { TrailContext } from '../TrailStore/TrailContext';
+import { TrailContext } from '../../TrailStore/TrailContext';
 
 export default class TrailDetail extends Component {
   static propTypes = trailDetailType.isRequired;
