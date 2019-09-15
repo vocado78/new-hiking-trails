@@ -52,13 +52,14 @@ app.get('*', (req, res) => {
 
     if (data) {
       const path = req.path.split('/').pop();
-      region = regions.find(region => region.value === path).value;
+      region = regions.find(region => region.value === path) || {};
 
-      if (region) {
+      if (region && region.value) {
+        region = region.value;
         trailData = showTrails(data, region);
         provinces = showProvinces(region);
       } else {
-        trailData = data.path;
+        trailData = data[path];
       }
     }
 

@@ -172,7 +172,6 @@ class Results extends React.Component {
             handleClick={this.handleClick}
           />
           <List
-            region={region}
             results={results}
             selections={selections}
           />
