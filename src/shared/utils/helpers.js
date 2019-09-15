@@ -74,7 +74,12 @@ const filterOptions = {
   comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
 };
 
-// const trailDataToArray = trailData => Object.values(trailData);
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
+
+const unSanitize = (str) => {
+  const result = regions.find(region => region.value === str);
+  return result.label;
+};
 
 const showTrails = (trailData, region) => {
   const trailDataToArray = Object.values(trailData);
@@ -88,8 +93,6 @@ const showTrails = (trailData, region) => {
 
   return results;
 };
-
-const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const showProvinces = (region) => {
   let results;
@@ -111,5 +114,6 @@ module.exports = {
   showTrails,
   showProvinces,
   filterOptions,
-  regions
+  regions,
+  unSanitize
 };

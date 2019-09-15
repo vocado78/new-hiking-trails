@@ -6,7 +6,8 @@ import {
   capitalize,
   showTrails,
   showProvinces,
-  filterOptions
+  filterOptions,
+  unSanitize
 } from '../../../shared/utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
@@ -156,7 +157,7 @@ class Results extends React.Component {
       options,
       selections
     } = this.state;
-    const region = capitalize(name); // TODO: fix format
+    const region = unSanitize(name);
     const { results: { title } } = content;
 
     return (
