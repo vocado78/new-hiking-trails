@@ -1,20 +1,19 @@
 /* eslint-disable */
-const express = require('express');
-const cors = require('cors');
-const firebase = require('firebase-admin');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const StaticRouter = require('react-router-dom').StaticRouter;
-const matchPath = require('react-router-dom').matchPath;
+import express from 'express';
+import cors from 'cors';
+import firebase from 'firebase-admin';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 import {
   showTrails,
   showProvinces
 } from '../shared/utils/helpers';
 
-const App = require('../../src/client/components/App/App').default;
-const regions = require('../shared/utils/helpers').regions;
-const routes = require('../shared/routes').default;
+import App from '../../src/client/components/App/App';
+import { regions } from '../shared/utils/helpers';
+import routes from '../shared/routes';
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
