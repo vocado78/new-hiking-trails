@@ -3,7 +3,7 @@ import Results from '../client/components/Results/Results';
 import TrailDetail from '../client/components/TrailDetail/TrailDetail';
 import About from '../client/components/About/About';
 import Contact from '../client/components/Contact/Contact';
-import fetchTrails from './api';
+import fetchTrails from '../shared/api';
 
 const routes = [
   {
