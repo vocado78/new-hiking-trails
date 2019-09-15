@@ -36,6 +36,37 @@ const provinces = {
   ]
 };
 
+const regions = [
+  {
+    label: 'Please select region',
+    value: ''
+  },
+  {
+    label: 'Northern Norrland',
+    value: 'northern-norrland'
+  },
+  {
+    label: 'Southern Norrland',
+    value: 'southern-norrland'
+  },
+  {
+    label: 'Svealand',
+    value: 'svealand'
+  },
+  {
+    label: 'Northern Götaland',
+    value: 'northern-gotaland'
+  },
+  {
+    label: 'Southern Götaland',
+    value: 'southern-gotaland'
+  },
+  {
+    label: 'Show all',
+    value: 'all'
+  }
+];
+
 const filterOptions = {
   services: ['Satisfactory', 'Good', 'Very good'],
   duration: ['1-3 days', '4-7 days', '2 weeks', '3 weeks or more'],
@@ -79,5 +110,6 @@ module.exports = {
   capitalize,
   showTrails,
   showProvinces,
-  filterOptions
+  filterOptions,
+  regions
 };

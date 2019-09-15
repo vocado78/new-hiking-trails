@@ -13,7 +13,7 @@ import {
 } from '../shared/utils/helpers';
 
 const App = require('../../src/client/components/App/App').default;
-const regions = require('../client/components/Home/RegionSelect/helpers').regions;
+const regions = require('../shared/utils/helpers').regions;
 const routes = require('../shared/routes').default;
 
 const app = express();
