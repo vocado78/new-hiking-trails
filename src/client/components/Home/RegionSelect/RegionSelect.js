@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { regions } from './helpers';
+import { regions } from '../../../../shared/utils/helpers';
 
 import styles from './styles.css';
 import Button from '../../Button/Button';
@@ -29,8 +29,7 @@ export default class RegionSelect extends Component {
           {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>
         <Button
-          path="/results"
-          searchString={`?region=${region}`}
+          path={`/results/${region}`}
           label="Go"
         />
       </form>

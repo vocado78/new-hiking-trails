@@ -50,6 +50,9 @@ const serverConfig = {
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
+    }),
+    new webpack.DefinePlugin({
+      __isBrowser__: 'false'
     })
   ]
 };
@@ -92,7 +95,10 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({})
+    new MiniCssExtractPlugin({}),
+    new webpack.DefinePlugin({
+      __isBrowser__: 'true'
+    })
   ]
 };
 

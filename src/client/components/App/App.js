@@ -17,7 +17,7 @@ export default function App() {
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <Route exact path="/contact" component={Contact} />
-      <Route exact path="/results" component={Results} />
+      <Route exact path="/results/:region" component={Results} />
       <Route path="/results/trail-details/:id" component={TrailDetail} />
       <Footer />
     </div>

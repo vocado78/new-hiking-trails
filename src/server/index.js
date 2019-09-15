@@ -1,10 +1,19 @@
 /* eslint-disable */
-const express = require('express');
-const firebase = require('firebase-admin');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const StaticRouter = require('react-router-dom').StaticRouter;
-const App = require('../../src/client/components/App/App').default;
+import express from 'express';
+import cors from 'cors';
+import firebase from 'firebase-admin';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter, matchPath } from 'react-router-dom';
+import serialize from 'serialize-javascript';
+import {
+  showTrails,
+  showProvinces
+} from '../shared/utils/helpers';
+
+import App from '../../src/client/components/App/App';
+import { regions } from '../shared/utils/helpers';
+import routes from '../shared/routes';
 
 const app = express();
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
@@ -20,40 +29,8 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
+app.use(cors());
 app.use(express.static('dist'));
-
-app.get('/', (req, res) => {
-  const context = {};
-
-  const component = ReactDOMServer.renderToString(
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
-  );
-
-  const html = `
-  <!DOCTYLE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8">
-      <title>Hiking Sweden</title>
-      <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
-      <div id="app">${component}</div>
-    </body>
-    <script src="bundle.js"></script>
-  </html>
-  `;
-
-  if (context.url) {
-    res.writeHead(301, { Location: context.url });
-    res.end();
-  } else {
-    res.send(html);
-  }
-
-});
 
 app.get('/api/trails', (req, res) => {
   const ref = db.ref('trails');
@@ -61,6 +38,59 @@ app.get('/api/trails', (req, res) => {
     res.send(snapshot.val());
   }, (error) => {
     console.error(`An error occurred reading from db: ${error.code}, ${error.message}`);
+  });
+});
+
+app.get('*', (req, res) => {
+  const currentRoute = routes.find((route) => matchPath(req.url, route)) || {};;
+  const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
+
+  promise.then((data) => {
+    let trailData = [];
+    let region = {};
+    let provinces = [];
+
+    if (data) {
+      const path = req.path.split('/').pop();
+      region = regions.find(region => region.value === path) || {};
+
+      if (region && region.value) {
+        region = region.value;
+        trailData = showTrails(data, region);
+        provinces = showProvinces(region);
+      } else {
+        trailData = data[path];
+      }
+    }
+
+    const context = { trailData, region, provinces };
+    
+    const component = ReactDOMServer.renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    );
+
+    const html = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <title>Hiking Sweden</title>
+        <link rel="stylesheet" type="text/css" href="/styles.css">
+      </head>
+      <body>
+        <div id="app">${component}</div>
+      </body>
+      <script>window.__INITIAL_DATA__=${serialize(data)}</script>
+      <script src="/bundle.js"></script>
+    </html>
+    `;
+
+    res.send(html)
+  }).catch((error) => {
+    console.warn(`An error occurred on the server: ${error.message}`);
+    return null;
   });
 });
 

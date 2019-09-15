@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { trailDetailType } from '../../utils/types';
 // import Map from './Map/map';
 import PageTitle from '../PageTitle/PageTitle';
@@ -6,49 +7,91 @@ import Description from './Description/Description';
 import KeyFacts from './KeyFacts/KeyFacts';
 import Button from '../Button/Button';
 import styles from './styles.css';
+import { TrailContext } from '../TrailStore/TrailContext';
 
 export default class TrailDetail extends Component {
   static propTypes = trailDetailType.isRequired;
+
+  constructor(props) {
+    super(props);
+    let trailData;
+
+    // eslint-disable-next-line no-undef
+    if (!__isBrowser__) {
+      ({
+        trailData
+      // eslint-disable-next-line react/prop-types
+      } = this.props.staticContext);
+    } else {
+      const trailName = window.location.pathname.split('/').pop();
+      // eslint-disable-next-line no-underscore-dangle
+      trailData = window.__INITIAL_DATA__[trailName];
+    }
+
+    this.state = {
+      trailData
+    };
+  }
+
+  componentDidMount() {
+    if (!this.state.trailData) {
+      this.updateData();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // eslint-disable-next-line react/prop-types
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      this.updateData();
+    }
+  }
 
   handleClick = (event) => {
     event.preventDefault();
     this.props.history.goBack();
   }
 
+  updateData = () => {
+    // const trailName = window.location.pathname.split('/').pop();
+    const trail = this.context[this.props.match.params.id];
+
+    this.setState({
+      trailData: trail
+    });
+  }
+
   render() {
     const {
-      location: {
-        state: {
-          name,
-          access,
-          complete,
-          connect,
-          description,
-          distance,
-          duration,
-          finish,
-          landscape,
-          level,
-          moreInfo,
-          province,
-          stageDistances,
-          stages,
-          start,
-          comfort,
-          // startLat,
-          // startLon,
-          // finLat,
-          // finLon,
-          // middleLat,
-          // middleLon
-        }
+      trailData: {
+        name,
+        access,
+        complete,
+        connect,
+        description,
+        distance,
+        duration,
+        finish,
+        landscape,
+        level,
+        moreInfo,
+        province,
+        stageDistances,
+        stages,
+        start,
+        comfort,
+        // startLat,
+        // startLon,
+        // finLat,
+        // finLon,
+        // middleLat,
+        // middleLon
       }
-    } = this.props;
+    } = this.state;
 
     return (
       <div className={styles.detailContainer}>
         <PageTitle
-          page="Trail details"
+          page="Trail Details"
           title={name}
         />
         <div className={styles.detailTextMapContainer}>
@@ -85,3 +128,5 @@ export default class TrailDetail extends Component {
     );
   }
 }
+
+TrailDetail.contextType = TrailContext;
