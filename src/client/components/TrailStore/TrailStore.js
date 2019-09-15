@@ -21,6 +21,7 @@ export default class TrailStore extends Component {
   }
 
   render() {
+    console.log('im trailstore and this is my data:', this.state.trailData);
     return (
       <TrailContext.Provider value={this.state.trailData}>
         {/* eslint-disable-next-line react/prop-types */}

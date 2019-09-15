@@ -6,6 +6,12 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const StaticRouter = require('react-router-dom').StaticRouter;
 const matchPath = require('react-router-dom').matchPath;
+import serialize from 'serialize-javascript';
+import {
+  showTrails,
+  showProvinces
+} from '../shared/utils/helpers';
+
 const App = require('../../src/client/components/App/App').default;
 const regions = require('../client/components/Home/RegionSelect/helpers').regions;
 const routes = require('../shared/routes').default;
@@ -36,30 +42,29 @@ app.get('/api/trails', (req, res) => {
   });
 });
 
-app.get('*', (req, res, next) => {
-  const currentRoute = routes.find((route) => matchPath(req.url, route)) || {};
+app.get('*', (req, res) => {
+  const currentRoute = routes.find((route) => matchPath(req.url, route)) || {};;
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
-  console.log('-------promise--------', promise);
+
   promise.then((data) => {
-    // console.log(data);
-    let trailData;
+    let trailData = [];
+    let region = {};
+    let provinces = [];
 
     if (data) {
       const path = req.path.split('/').pop();
-      const region = regions.find(region => region.value === path);
+      region = regions.find(region => region.value === path).value;
 
       if (region) {
-        console.log('----------this is Object.values(data)-------', Object.values(data)[0]);
-        console.log('----------region--------------', region);
-        const testing = Object.values(data);
-        trailData = region === 'all' ? testing : testing.filter(trail => trail.region === region.value);
+        trailData = showTrails(data, region);
+        provinces = showProvinces(region);
       } else {
         trailData = data.path;
       }
     }
 
-    const context = { trailData } || [];
-    // console.log('---------------context-------------------', context);
+    const context = { trailData, region, provinces };
+    
     const component = ReactDOMServer.renderToString(
       <StaticRouter location={req.url} context={context}>
         <App />
@@ -72,26 +77,21 @@ app.get('*', (req, res, next) => {
       <head>
         <meta charset="utf-8">
         <title>Hiking Sweden</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="/styles.css">
       </head>
       <body>
         <div id="app">${component}</div>
       </body>
-      <script src="bundle.js"></script>
+      <script>window.__INITIAL_DATA__=${serialize(data)}</script>
+      <script src="/bundle.js"></script>
     </html>
     `;
 
     res.send(html)
-  }).catch(next)
-
-  // if (context.url) {
-  //   res.writeHead(301, { Location: context.url });
-  //   res.end();
-  // } else {
-  //   res.send(html);
-  // }
-  // fetchTrails(req)
-  //   .then(data => console.log(data));
+  }).catch((error) => {
+    console.warn(`An error occurred on the server: ${error.message}`);
+    return null;
+  });
 });
 
 app.listen(3000, () => {

@@ -9,7 +9,8 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: Home
+    component: Home,
+    getTrails: () => fetchTrails()
   },
   {
     path: '/results/:region',

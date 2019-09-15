@@ -43,35 +43,41 @@ const filterOptions = {
   comfort: ['Mainly camping/camping cabins', 'Mainly hostels/hotels'],
 };
 
-const trailDataToArray = trailData => Object.values(trailData);
+// const trailDataToArray = trailData => Object.values(trailData);
 
-const filterByRegion = (trailData, region) => {
-  const results = trailDataToArray(trailData).filter(trail => trail.region === region);
+const showTrails = (trailData, region) => {
+  const trailDataToArray = Object.values(trailData);
+  let results;
+
+  if (region === 'all') {
+    results = trailDataToArray;
+  } else {
+    results = trailDataToArray.filter(trail => trail.region === region);
+  }
+
   return results;
 };
-
-const showAllTrails = trailData => trailDataToArray(trailData);
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const showProvinces = (region) => {
-  const display = provinces[region];
-  return display;
-};
+  let results;
 
-const showAllProvinces = () => {
-  const two = provinces.svealand.concat(provinces['northern-norrland']);
-  const three = two.concat(provinces['southern-norrland']);
-  const four = three.concat(provinces['northern-gotaland']);
-  const all = four.concat(provinces['southern-gotaland']);
-  return all;
+  if (region === 'all') {
+    const two = provinces.svealand.concat(provinces['northern-norrland']);
+    const three = two.concat(provinces['southern-norrland']);
+    const four = three.concat(provinces['northern-gotaland']);
+    results = four.concat(provinces['southern-gotaland']);
+  } else {
+    results = provinces[region];
+  }
+
+  return results;
 };
 
 module.exports = {
-  filterByRegion,
   capitalize,
-  showAllTrails,
+  showTrails,
   showProvinces,
-  showAllProvinces,
   filterOptions
 };

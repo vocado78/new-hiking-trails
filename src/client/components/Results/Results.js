@@ -1,16 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-// import queryString from 'query-string';
+// import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 import {
-  filterByRegion,
   capitalize,
-  showAllTrails,
-  showAllProvinces,
+  showTrails,
   showProvinces,
   filterOptions
-} from './utils/helpers';
+} from '../../../shared/utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
@@ -19,30 +16,33 @@ import { TrailContext } from '../TrailStore/TrailContext';
 
 
 class Results extends React.Component {
-  static propTypes = {
-    location: PropTypes.shape({
-      search: PropTypes.string
-    }).isRequired
-  }
-
   constructor(props) {
     super(props);
     const {
       services, duration, level, comfort
     } = filterOptions;
     let trails;
-    let test;
+    let region;
+    let provinces;
 
+    // eslint-disable-next-line no-undef
     if (!__isBrowser__) {
-      trails = this.props.staticContext.trailData;
-      test = 'testing';
+      ({
+        trails, region, provinces
+      // eslint-disable-next-line react/prop-types
+      } = this.props.staticContext);
+    } else {
+      region = window.location.pathname.split('/').pop();
+      // eslint-disable-next-line no-underscore-dangle
+      trails = showTrails(window.__INITIAL_DATA__, region);
+      provinces = showProvinces(region);
     }
 
     this.state = {
-      results: trails || [], // needed SSR
-      name: test || '', // needed SSR
+      results: trails || [],
+      name: region || '',
       options: {
-        provinces: [], // needed SSR
+        provinces,
         services,
         duration,
         level,
@@ -59,35 +59,16 @@ class Results extends React.Component {
   }
 
   componentDidMount() {
-    // const { location: { search } } = this.props;
-    const region = window.location.pathname.split('/').pop() || 'all';
-    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
-    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
-
-    this.setState(prevState => ({
-      results: trails,
-      name: region,
-      options: {
-        ...prevState.options,
-        provinces
-      }
-    }));
+    if (!this.state.results) {
+      this.updateData();
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    // const { location: { search } } = nextProps;
-    const region = window.location.pathname.split('/').pop() || 'all';
-    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
-    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
-
-    this.setState(prevState => ({
-      results: trails,
-      name: region,
-      options: {
-        ...prevState.options,
-        provinces
-      }
-    }));
+  componentDidUpdate(prevProps) {
+    // eslint-disable-next-line react/prop-types
+    if (prevProps.match.params.region !== this.props.match.params.region) {
+      this.updateData();
+    }
   }
 
   handleSelects = (event) => {
@@ -126,10 +107,9 @@ class Results extends React.Component {
   }
 
   handleClick = () => {
-    // const { location: { search } } = this.props;
     const region = window.location.pathname.split('/').pop() || 'all';
-    const trails = region === 'all' ? showAllTrails(this.context) : filterByRegion(this.context, region);
-    const provinces = region === 'all' ? showAllProvinces() : showProvinces(region);
+    const trails = showTrails(this.context, region);
+    const provinces = showProvinces(region);
     const {
       services, duration, level, comfort
     } = filterOptions;
@@ -154,6 +134,21 @@ class Results extends React.Component {
     });
   }
 
+  updateData = () => {
+    const region = window.location.pathname.split('/').pop();
+    const trails = showTrails(this.context, region);
+    const provinces = showProvinces(region);
+
+    this.setState(prevState => ({
+      results: trails,
+      name: region,
+      options: {
+        ...prevState.options,
+        provinces
+      }
+    }));
+  }
+
   render() {
     const {
       results,
@@ -161,7 +156,7 @@ class Results extends React.Component {
       options,
       selections
     } = this.state;
-    const region = capitalize(name);
+    const region = capitalize(name); // TODO: fix format
     const { results: { title } } = content;
 
     return (
