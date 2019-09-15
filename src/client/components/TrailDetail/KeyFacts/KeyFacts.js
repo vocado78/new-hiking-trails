@@ -1,5 +1,5 @@
 import React from 'react';
-import { keyFactsType } from '../../../utils/types';
+import { keyFactsType } from '../../../../shared/utils/types';
 
 import styles from './styles.css';
 

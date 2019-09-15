@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from './styles.css';
-import content from '../../utils/content';
+import content from '../../../shared/utils/content';
 
 export default function Navbar() {
   const { title } = content.navbar;

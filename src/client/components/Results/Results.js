@@ -12,7 +12,7 @@ import {
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
-import content from '../../utils/content';
+import content from '../../../shared/utils/content';
 import { TrailContext } from '../TrailStore/TrailContext';
 
 

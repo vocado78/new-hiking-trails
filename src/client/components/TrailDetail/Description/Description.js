@@ -1,5 +1,5 @@
 import React from 'react';
-import { descriptionType } from '../../../utils/types';
+import { descriptionType } from '../../../../shared/utils/types';
 
 import styles from './styles.css';
 

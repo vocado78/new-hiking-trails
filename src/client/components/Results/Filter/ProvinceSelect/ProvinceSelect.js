@@ -1,5 +1,5 @@
 import React from 'react';
-import { provinceSelectType } from '../../../../utils/types';
+import { provinceSelectType } from '../../../../../shared/utils/types';
 
 import styles from './styles.css';
 

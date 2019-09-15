@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { trailDetailType } from '../../utils/types';
+import { trailDetailType } from '../../../shared/utils/types';
 // import Map from './Map/map';
 import PageTitle from '../PageTitle/PageTitle';
 import Description from './Description/Description';

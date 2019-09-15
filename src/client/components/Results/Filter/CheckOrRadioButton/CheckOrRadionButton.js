@@ -1,5 +1,5 @@
 import React from 'react';
-import { checkOrRadioButtonType } from '../../../../utils/types';
+import { checkOrRadioButtonType } from '../../../../../shared/utils/types';
 
 import styles from './styles.css';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { pageTitleType } from '../../utils/types';
+import { pageTitleType } from '../../../shared/utils/types';
 
 import styles from './styles.css';
 

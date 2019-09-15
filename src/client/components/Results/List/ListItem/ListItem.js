@@ -1,8 +1,8 @@
 import React from 'react';
-import { listItemDataType } from '../../../../utils/types';
+import { listItemDataType } from '../../../../../shared/utils/types';
 
 import styles from './styles.css';
-import content from '../../../../utils/content';
+import content from '../../../../../shared/utils/content';
 
 export default function ListItem({ data }) {
   // eslint-disable-next-line

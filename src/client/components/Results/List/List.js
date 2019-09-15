@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { listType } from '../../../utils/types';
+import { listType } from '../../../../shared/utils/types';
 
 import styles from './styles.css';
 import ListItem from './ListItem/ListItem';
