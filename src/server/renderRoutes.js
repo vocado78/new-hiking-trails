@@ -9,7 +9,7 @@ import routes from './routes';
 export default function renderRoutes(req, res) {
   const mapsApiKey = process.env.API_KEY;
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
-  const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
+  const promise = currentRoute.getTrails ? currentRoute.getTrails(req) : Promise.resolve();
 
   promise.then((data) => {
     const context = { data };

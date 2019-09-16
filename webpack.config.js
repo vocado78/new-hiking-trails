@@ -94,7 +94,9 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({}),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    }),
     new webpack.DefinePlugin({
       __isBrowser__: 'true'
     })
