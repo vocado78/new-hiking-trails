@@ -1,6 +1,6 @@
 import React from 'react';
 
-import content from '../../../../shared/utils/content';
+import content from '../../../utils/content';
 import styles from './styles.css';
 
 export default function BannerText() {

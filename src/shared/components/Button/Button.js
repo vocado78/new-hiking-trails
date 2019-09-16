@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { buttonType } from '../../../shared/utils/types';
+import { buttonType } from '../../utils/types';
 
 import styles from './styles.css';
 // eslint-disable-next-line

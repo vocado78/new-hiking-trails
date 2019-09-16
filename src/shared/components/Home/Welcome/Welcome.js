@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-import content from '../../../../shared/utils/content';
+import content from '../../../utils/content';
 import Button from '../../Button/Button';
 import PageTitle from '../../PageTitle/PageTitle';
 

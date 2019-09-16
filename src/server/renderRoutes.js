@@ -8,7 +8,7 @@ import {
   showProvinces,
   regions
 } from '../shared/utils/helpers';
-import App from '../client/components/App/App';
+import App from '../shared/components/App/App';
 import routes from './routes';
 
 export default function renderRoutes(req, res) {
