@@ -71,7 +71,6 @@ const clientConfig = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        // include: path.join(__dirname, 'src', 'client'),
         exclude: path.join(__dirname, 'node_modules'),
         use: 'babel-loader'
       },

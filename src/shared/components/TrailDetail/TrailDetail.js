@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { trailDetailType } from '../../utils/types';
-// import Map from './Map/map';
+import Map from './Map/map';
 import PageTitle from '../PageTitle/PageTitle';
 import Description from './Description/Description';
 import KeyFacts from './KeyFacts/KeyFacts';
@@ -52,7 +52,6 @@ export default class TrailDetail extends Component {
   }
 
   updateData = () => {
-    // const trailName = window.location.pathname.split('/').pop();
     const trail = this.context[this.props.match.params.id];
 
     this.setState({
@@ -79,12 +78,12 @@ export default class TrailDetail extends Component {
         stages,
         start,
         comfort,
-        // startLat,
-        // startLon,
-        // finLat,
-        // finLon,
-        // middleLat,
-        // middleLon
+        startLat,
+        startLon,
+        finLat,
+        finLon,
+        middleLat,
+        middleLon
       }
     } = this.state;
 
@@ -102,14 +101,14 @@ export default class TrailDetail extends Component {
             landscape={landscape}
             moreInfo={moreInfo}
           />
-          {/* <Map
+          <Map
             startLat={startLat}
             startLon={startLon}
             finLat={finLat}
             finLon={finLon}
             midLat={middleLat}
             midLon={middleLon}
-          /> */}
+          />
         </div>
         <KeyFacts
           connect={connect}
