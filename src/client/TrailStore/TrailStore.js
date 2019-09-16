@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { TrailContext } from './TrailContext';
-import fetchTrails from '../../../shared/api';
+import fetchTrails from '../../shared/utils/api';
 
 export default class TrailStore extends Component {
   constructor(props) {

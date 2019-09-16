@@ -1,9 +1,9 @@
-import Home from '../client/components/Home/Home';
-import Results from '../client/components/Results/Results';
-import TrailDetail from '../client/components/TrailDetail/TrailDetail';
-import About from '../client/components/About/About';
-import Contact from '../client/components/Contact/Contact';
-import fetchTrails from './api';
+import Home from '../shared/components/Home/Home';
+import Results from '../shared/components/Results/Results';
+import TrailDetail from '../shared/components/TrailDetail/TrailDetail';
+import About from '../shared/components/About/About';
+import Contact from '../shared/components/Contact/Contact';
+import fetchTrails from '../shared/utils/api';
 
 const routes = [
   {

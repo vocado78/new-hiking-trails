@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { regions } from '../../../../shared/utils/helpers';
+import { regions } from '../../../utils/helpers';
 
 import styles from './styles.css';
 import Button from '../../Button/Button';
