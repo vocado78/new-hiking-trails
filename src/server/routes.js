@@ -10,18 +10,18 @@ const routes = [
     path: '/',
     exact: true,
     component: Home,
-    getTrails: () => fetchTrails()
+    getTrails: req => fetchTrails(req)
   },
   {
     path: '/results/:region',
     exact: true,
     component: Results,
-    getTrails: () => fetchTrails()
+    getTrails: req => fetchTrails(req)
   },
   {
     path: '/results/trail-details/:id',
     component: TrailDetail,
-    getTrails: () => fetchTrails()
+    getTrails: req => fetchTrails(req)
   },
   {
     path: '/about',

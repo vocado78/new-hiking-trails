@@ -57,6 +57,17 @@ const serverConfig = {
   ]
 };
 
+if (process.env.NODE_ENV === 'production') {
+  serverConfig.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  );
+}
+
 const clientConfig = {
   mode: 'development',
   target: 'web',
@@ -94,11 +105,24 @@ const clientConfig = {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({}),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    }),
     new webpack.DefinePlugin({
       __isBrowser__: 'true'
     })
   ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  clientConfig.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  );
+}
 
 module.exports = [serverConfig, clientConfig];

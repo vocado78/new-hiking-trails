@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-fetch';
 
-export default function fetchTrails() {
+export default function fetchTrails(req = {}) {
   // eslint-disable-next-line no-undef
-  const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}` : 'http://localhost:3000';
+  const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}`
+    : `${req.protocol}://${req.hostname}`;
 
   return fetch(`${root}/api/trails`)
     .then((response) => {

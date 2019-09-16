@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack && concurrently \"webpack --watch\" \"nodemon dist\"",
     "build": "set NODE_ENV='production' && webpack -p",
-    "start": "NODE_ENV=production node dist/index.js",
     "deploy": "npm run build && firebase deploy",
     "firebase-init": "firebase login && firebase init"
   },
