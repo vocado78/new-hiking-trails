@@ -3,11 +3,6 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import {
-  showTrails,
-  showProvinces,
-  regions
-} from '../shared/utils/helpers';
 import App from '../shared/components/App/App';
 import routes from './routes';
 
@@ -17,25 +12,7 @@ export default function renderRoutes(req, res) {
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
 
   promise.then((data) => {
-    let trailData = [];
-    let region = {};
-    let provinces = [];
-
-    if (data) {
-      const path = req.path.split('/').pop();
-      region = regions.find(item => item.value === path) || {};
-
-      if (region && region.value) {
-        region = region.value;
-        trailData = showTrails(data, region);
-        provinces = showProvinces(region);
-      } else {
-        trailData = data[path];
-      }
-    }
-
-    const context = { trailData, region, provinces };
-
+    const context = { data };
     const component = renderToString(
       <StaticRouter location={req.url} context={context}>
         <App />

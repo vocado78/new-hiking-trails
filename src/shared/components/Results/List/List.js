@@ -46,7 +46,7 @@ export default function List({
           .map(trail => (
             <Link
               to={{
-                pathname: `trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
+                pathname: `/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
                 state: trail
               }}
               key={trail.name}

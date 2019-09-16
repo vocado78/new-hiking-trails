@@ -17,10 +17,10 @@ export default function App() {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/results/:region" component={Results} />
-        <Route path="/results/trail-details/:id" component={TrailDetail} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/results/:region" component={Results} />
+        <Route exact path="/results/trail-details/:id" component={TrailDetail} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

@@ -1,3 +1,5 @@
+/* global __isBrowser__ */
+
 import React, { Component } from 'react';
 
 import { trailDetailType } from '../../utils/types';
@@ -8,26 +10,19 @@ import KeyFacts from './KeyFacts/KeyFacts';
 import Button from '../Button/Button';
 import styles from './styles.css';
 import { TrailContext } from '../../../client/TrailStore/TrailContext';
+import NotFound from '../NotFound/NotFound';
+
 
 export default class TrailDetail extends Component {
   static propTypes = trailDetailType.isRequired;
 
   constructor(props) {
     super(props);
-    let trailData;
 
-    // eslint-disable-next-line no-undef
-    if (!__isBrowser__) {
-      ({
-        trailData
-      // eslint-disable-next-line react/prop-types
-      } = this.props.staticContext);
-    } else {
-      const trailName = window.location.pathname.split('/').pop();
-      // eslint-disable-next-line no-underscore-dangle
-      trailData = window.__INITIAL_DATA__[trailName];
-    }
-
+    const trailName = this.props.match.params.id;
+    // eslint-disable-next-line no-underscore-dangle
+    const trailData = __isBrowser__ ? window.__INITIAL_DATA__[trailName]
+      : this.props.staticContext.data[trailName];
     this.state = {
       trailData
     };
@@ -40,7 +35,6 @@ export default class TrailDetail extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // eslint-disable-next-line react/prop-types
     if (prevProps.match.params.id !== this.props.match.params.id) {
       this.updateData();
     }
@@ -60,6 +54,10 @@ export default class TrailDetail extends Component {
   }
 
   render() {
+    if (!this.state.trailData) {
+      return <NotFound />;
+    }
+
     const {
       trailData: {
         name,
