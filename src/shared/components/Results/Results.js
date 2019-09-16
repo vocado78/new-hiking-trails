@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
+/* global __isBrowser__ */
+
 import React from 'react';
-// import PropTypes from 'prop-types';
 
 import styles from './styles.css';
 import {
@@ -14,6 +16,7 @@ import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
 import content from '../../utils/content';
 import { TrailContext } from '../../../client/TrailStore/TrailContext';
+import NotFound from '../NotFound/NotFound';
 
 
 class Results extends React.Component {
@@ -22,22 +25,13 @@ class Results extends React.Component {
     const {
       services, duration, level, comfort
     } = filterOptions;
-    let trails;
-    let region;
-    let provinces;
 
-    // eslint-disable-next-line no-undef
-    if (!__isBrowser__) {
-      ({
-        trails, region, provinces
-      // eslint-disable-next-line react/prop-types
-      } = this.props.staticContext);
-    } else {
-      region = window.location.pathname.split('/').pop();
-      // eslint-disable-next-line no-underscore-dangle
-      trails = showTrails(window.__INITIAL_DATA__, region);
-      provinces = showProvinces(region);
-    }
+    // eslint-disable-next-line prefer-destructuring
+    const region = this.props.match.params.region;
+    // eslint-disable-next-line no-underscore-dangle
+    const trails = __isBrowser__ ? showTrails(window.__INITIAL_DATA__, region)
+      : showTrails(this.props.staticContext.data, region);
+    const provinces = showProvinces(region);
 
     this.state = {
       results: trails || [],
@@ -66,7 +60,6 @@ class Results extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // eslint-disable-next-line react/prop-types
     if (prevProps.match.params.region !== this.props.match.params.region) {
       this.updateData();
     }
@@ -108,7 +101,7 @@ class Results extends React.Component {
   }
 
   handleClick = () => {
-    const region = window.location.pathname.split('/').pop() || 'all';
+    const region = window.location.pathname.split('/').pop();
     const trails = showTrails(this.context, region);
     const provinces = showProvinces(region);
     const {
@@ -157,6 +150,11 @@ class Results extends React.Component {
       options,
       selections
     } = this.state;
+
+    if (!results.length) {
+      return <NotFound />;
+    }
+
     const region = unSanitize(name);
     const { results: { title } } = content;
 

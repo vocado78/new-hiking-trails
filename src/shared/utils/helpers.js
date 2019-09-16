@@ -78,6 +78,7 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const unSanitize = (str) => {
   const result = regions.find(region => region.value === str);
+  console.log('result from unSanitize region is:', result);
   return result.label;
 };
 
@@ -103,7 +104,7 @@ const showProvinces = (region) => {
     const four = three.concat(provinces['northern-gotaland']);
     results = four.concat(provinces['southern-gotaland']);
   } else {
-    results = provinces[region];
+    results = provinces[region] || [];
   }
 
   return results;
