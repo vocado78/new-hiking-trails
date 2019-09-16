@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 export default function fetchTrails(req = {}) {
   // eslint-disable-next-line no-undef
   const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}`
-    : `${req.protocol}://${req.hostname}:3000`; // TODO: remove port for prod;
+    : `${req.protocol}://${req.hostname}`;
 
   return fetch(`${root}/api/trails`)
     .then((response) => {
