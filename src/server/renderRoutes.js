@@ -12,6 +12,7 @@ import App from '../shared/components/App/App';
 import routes from './routes';
 
 export default function renderRoutes(req, res) {
+  const mapsApiKey = process.env.API_KEY;
   const currentRoute = routes.find(route => matchPath(req.url, route)) || {};
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
 
@@ -52,6 +53,7 @@ export default function renderRoutes(req, res) {
       <body>
         <div id="app">${component}</div>
       </body>
+      <script src="https://maps.googleapis.com/maps/api/js?key=${mapsApiKey}"></script>
       <script>window.__INITIAL_DATA__=${serialize(data)}</script>
       <script src="/bundle.js"></script>
     </html>
