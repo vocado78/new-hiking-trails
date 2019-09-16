@@ -1,11 +1,11 @@
 import React from 'react';
-import { filterType } from '../../../../shared/utils/types';
+import { filterType } from '../../../utils/types';
 
 import styles from './styles.css';
 import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
 import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 import Button from '../../Button/Button';
-import content from '../../../../shared/utils/content';
+import content from '../../../utils/content';
 
 export default function Filter({
   region,
