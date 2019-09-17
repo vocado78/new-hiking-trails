@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
@@ -10,7 +11,7 @@ const serverConfig = {
     __dirname: false
   },
   entry: {
-    'index.js': path.resolve(__dirname, 'src/server/index.js')
+    'index.js': path.resolve(__dirname, 'src/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -57,17 +58,6 @@ const serverConfig = {
   ]
 };
 
-if (process.env.NODE_ENV === 'production') {
-  serverConfig.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
-
 const clientConfig = {
   mode: 'development',
   target: 'web',
@@ -113,16 +103,5 @@ const clientConfig = {
     })
   ]
 };
-
-if (process.env.NODE_ENV === 'production') {
-  clientConfig.plugins.push(
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
 
 module.exports = [serverConfig, clientConfig];

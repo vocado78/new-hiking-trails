@@ -5,7 +5,7 @@ export default function fetchTrails(req = {}) {
   const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}`
     : `${req.protocol}://${req.hostname}`;
 
-  return fetch(`${root}/api/trails`)
+  return fetch(`${root}/ssr/api/trails`)
     .then((response) => {
       if (response.ok) {
         return response.json();

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className={styles.notFound}>
       <PageTitle title="Sorry, the page you're looking for doesn't exist" page="Not Found" />
-      <Button path="/" label="Go to Home" />
+      <Button path="/ssr" label="Go to Home" />
     </div>
   );
 }

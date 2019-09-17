@@ -11,17 +11,17 @@ export default function Navbar() {
       <h1>{title}</h1>
       <ul className={styles.navList}>
         <li>
-          <NavLink exact activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/">
+          <NavLink exact activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/ssr">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/about">
+          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/ssr/about">
             About
           </NavLink>
         </li>
         <li>
-          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/contact">
+          <NavLink activeStyle={{ background: '#ffffff', color: '#ffc814' }} to="/ssr/contact">
             Contact
           </NavLink>
         </li>
