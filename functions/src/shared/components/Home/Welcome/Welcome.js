@@ -30,7 +30,7 @@ function Welcome() {
   }), _react.default.createElement("div", {
     className: _styles.default.welcomeText
   }, _react.default.createElement("p", null, first), _react.default.createElement("p", null, second), _react.default.createElement(_Button.default, {
-    path: "/about",
+    path: "/ssr/about",
     label: "Read More"
   })), _react.default.createElement("div", {
     className: _styles.default.welcomeImage

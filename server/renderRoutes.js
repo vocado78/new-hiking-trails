@@ -10,11 +10,9 @@ import { apiKey } from '../credentials';
 export default function renderRoutes(req, res) {
   const url = req.url === '/' ? '/ssr' : `/ssr${req.url}`;
   const currentRoute = routes.find(route => matchPath(url, route)) || {};
-  console.log('-----------currentRoute is--------------', currentRoute);
   const promise = currentRoute.getTrails ? currentRoute.getTrails(req) : Promise.resolve();
 
   promise.then((data) => {
-    console.log('--------from renderroutes-------------', url, data);
     const context = { data };
     const component = renderToString(
       <StaticRouter location={url} context={context}>

@@ -3,8 +3,8 @@ import fetch from 'isomorphic-fetch';
 export default function fetchTrails(req = {}) {
   // eslint-disable-next-line no-undef
   const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}`
-    : 'https://us-central1-hiking-sweden.cloudfunctions.net';
-  console.log('----------------from fetch trails-------------', root, __isBrowser__);
+    : `${req.protocol}://${req.hostname}`;
+
   return fetch(`${root}/ssr/api/trails`)
     .then((response) => {
       if (response.ok) {

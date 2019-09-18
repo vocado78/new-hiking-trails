@@ -6,10 +6,7 @@
   "scripts": {
     "dev": "webpack && concurrently \"webpack --watch\" \"nodemon dist\"",
     "build": "set NODE_ENV='production' && webpack --config webpack.prod.config.js",
-    "babel": "babel src -d functions/src",
-    "deploy": "npm run build && firebase deploy",
-    "firebase-init": "firebase login && firebase init",
-    "temp": "babel src/shared/utils/api.js -d functions/src/shared/utils"
+    "babel": "babel src -d functions/src"
   },
   "babel": {
     "presets": [
