@@ -4,3 +4,6 @@ firebase-adminsdk.json
 trails.json
 npm-debug.log
 credentials.js
+functions/public
+functions/src/
+functions/index.js
