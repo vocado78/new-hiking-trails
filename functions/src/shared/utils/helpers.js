@@ -44,7 +44,6 @@ var unSanitize = function unSanitize(str) {
   var result = regions.find(function (region) {
     return region.value === str;
   });
-  console.log('result from unSanitize region is:', result);
   return result.label;
 };
 
