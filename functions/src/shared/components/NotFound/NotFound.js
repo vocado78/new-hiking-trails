@@ -7,7 +7,7 @@ exports.default = Home;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _PageTitle = _interopRequireDefault(require("../PageTitle/PageTitle"));
 

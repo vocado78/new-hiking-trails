@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _Navbar = _interopRequireDefault(require("../Navbar/Navbar"));
 
@@ -34,23 +34,23 @@ function App() {
     className: _styles.default.app
   }, _react.default.createElement(_Navbar.default, null), _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/",
+    path: "/ssr",
     component: _Home.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/about",
+    path: "/ssr/about",
     component: _About.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/contact",
+    path: "/ssr/contact",
     component: _Contact.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/results/:region",
+    path: "/ssr/results/:region",
     component: _Results.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     exact: true,
-    path: "/results/trail-details/:id",
+    path: "/ssr/results/trail-details/:id",
     component: _TrailDetail.default
   }), _react.default.createElement(_reactRouterDom.Route, {
     component: _NotFound.default

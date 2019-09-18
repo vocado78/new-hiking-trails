@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _types = require("../../../utils/types");
 
-var _styles = _interopRequireDefault(require("../../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _CheckOrRadionButton = _interopRequireDefault(require("./CheckOrRadioButton/CheckOrRadionButton"));
 

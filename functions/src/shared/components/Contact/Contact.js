@@ -9,7 +9,7 @@ var _react = _interopRequireDefault(require("react"));
 
 var _PageTitle = _interopRequireDefault(require("../PageTitle/PageTitle"));
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

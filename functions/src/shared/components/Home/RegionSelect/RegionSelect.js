@@ -9,7 +9,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _helpers = require("../../../utils/helpers");
 
-var _styles = _interopRequireDefault(require("../../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _Button = _interopRequireDefault(require("../../Button/Button"));
 

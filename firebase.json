@@ -12,5 +12,8 @@
         "function": "ssr"
       }
     ]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }

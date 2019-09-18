@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _helpers = require("../../utils/helpers");
 

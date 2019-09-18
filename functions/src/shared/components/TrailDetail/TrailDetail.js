@@ -19,7 +19,7 @@ var _KeyFacts = _interopRequireDefault(require("./KeyFacts/KeyFacts"));
 
 var _Button = _interopRequireDefault(require("../Button/Button"));
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _TrailContext = require("../../../client/TrailStore/TrailContext");
 

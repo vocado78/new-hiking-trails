@@ -16,11 +16,11 @@ export default function App() {
     <div className={styles.app}>
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/contact" component={Contact} />
-        <Route exact path="/results/:region" component={Results} />
-        <Route exact path="/results/trail-details/:id" component={TrailDetail} />
+        <Route exact path="/ssr" component={Home} />
+        <Route exact path="/ssr/about" component={About} />
+        <Route exact path="/ssr/contact" component={Contact} />
+        <Route exact path="/ssr/results/:region" component={Results} />
+        <Route exact path="/ssr/results/trail-details/:id" component={TrailDetail} />
         <Route component={NotFound} />
       </Switch>
       <Footer />

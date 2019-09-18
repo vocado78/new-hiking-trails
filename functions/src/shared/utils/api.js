@@ -12,7 +12,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function fetchTrails() {
   var req = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   // eslint-disable-next-line no-undef
-  var root = __isBrowser__ ? "".concat(window.location.protocol, "//").concat(window.location.host) : "".concat(req.protocol, "://").concat(req.hostname);
+  var root = __isBrowser__ ? "".concat(window.location.protocol, "//").concat(window.location.host) : 'https://us-central1-hiking-sweden.cloudfunctions.net';
+  console.log('----------------from fetch trails-------------', root, __isBrowser__);
   return (0, _isomorphicFetch.default)("".concat(root, "/ssr/api/trails")).then(function (response) {
     if (response.ok) {
       return response.json();
@@ -20,6 +21,7 @@ function fetchTrails() {
 
     throw new Error('There was a network failure reading from the db.');
   }).then(function (trailData) {
+    console.log('-----------------trailData from .then return-------------', trailData);
     return trailData;
   }).catch(function (error) {
     console.warn("An error occurred fetching trail data: ".concat(error.message));

@@ -7,29 +7,29 @@ import fetchTrails from '../src/shared/utils/api';
 
 const routes = [
   {
-    path: '/',
+    path: '/ssr',
     exact: true,
     component: Home,
     getTrails: req => fetchTrails(req)
   },
   {
-    path: '/results/:region',
+    path: '/ssr/results/:region',
     exact: true,
     component: Results,
     getTrails: req => fetchTrails(req)
   },
   {
-    path: '/results/trail-details/:id',
+    path: '/ssr/results/trail-details/:id',
     component: TrailDetail,
     getTrails: req => fetchTrails(req)
   },
   {
-    path: '/about',
+    path: '/ssr/about',
     exact: true,
     component: About
   },
   {
-    path: '/contact',
+    path: '/ssr/contact',
     exact: true,
     component: Contact
   }

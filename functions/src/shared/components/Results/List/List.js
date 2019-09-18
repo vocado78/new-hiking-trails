@@ -11,7 +11,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _types = require("../../../utils/types");
 
-var _styles = _interopRequireDefault(require("../../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 var _ListItem = _interopRequireDefault(require("./ListItem/ListItem"));
 
@@ -65,7 +65,7 @@ function List(_ref) {
   }).map(function (trail) {
     return _react.default.createElement(_reactRouterDom.Link, {
       to: {
-        pathname: "/results/trail-details/".concat(trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()),
+        pathname: "/ssr/results/trail-details/".concat(trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()),
         state: trail
       },
       key: trail.name

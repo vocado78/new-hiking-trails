@@ -11,7 +11,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _types = require("../../utils/types");
 
-var _styles = _interopRequireDefault(require("../../../../public/styles.css"));
+var _styles = _interopRequireDefault(require("./styles.css"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
