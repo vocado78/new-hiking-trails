@@ -4,11 +4,21 @@
   background-position: center;
   height: 750px;
   display: flex;
+  position: relative;
+}
+
+.banner::before {
+  content: '';
+	position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .bannerText {
-  width: 65%;
-  font-size: 1.125em;  
+  width: 65%;  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,4 +28,5 @@
   max-width: 960px;
   margin: 0 auto;
   display: flex;
+  z-index: 2;
 }

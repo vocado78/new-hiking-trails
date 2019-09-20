@@ -14,7 +14,6 @@ import {
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
-import content from '../../utils/content';
 import { TrailContext } from '../../../client/TrailStore/TrailContext';
 import NotFound from '../NotFound/NotFound';
 
@@ -156,11 +155,10 @@ class Results extends React.Component {
     }
 
     const region = unSanitize(name);
-    const { results: { title } } = content;
 
     return (
       <div className={styles.results}>
-        <PageTitle title={`${title} ${region}`} page="Results" />
+        <PageTitle title={`In ${region}`} page="Results" />
         <div className={styles.container}>
           <Filter
             region={region}
