@@ -1,14 +1,15 @@
 .pageTitle {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 500;
-  margin-bottom: 62px;
-  border-left: 4px solid #ffc814;
+  margin: 62px 0;
+  border-left: 3px solid #ffc814;
   padding-left: 10px;
   line-height: 0.7em;
+  letter-spacing: -0.02em;
 }
 
 .pageTitle > span {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   text-transform: uppercase;
   color: #ffc814;

@@ -62,7 +62,7 @@ const regions = [
     value: 'southern-gotaland'
   },
   {
-    label: 'Show all',
+    label: 'All',
     value: 'all'
   }
 ];

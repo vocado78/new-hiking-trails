@@ -1,10 +1,13 @@
 .title {
   margin-bottom: 1em;
   color: #ffffff;
-  letter-spacing: 2px;
+  font-size: 48px;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 30px rgba(0,0,0,0.6);
 }
 
 .intro {
-  font-weight: bold;
+  font-size: 24px;
   color: #ffffff;
+  letter-spacing: -0.03em;
 }

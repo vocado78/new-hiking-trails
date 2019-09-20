@@ -4,13 +4,17 @@
   align-items: center;
   padding: 0 24px;
   height: 75px;
-  color: #ffffff;
-  background: #ffc814;
+  color: #800028;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .navbar > h1 {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: normal;
+  letter-spacing: -0.05em;
 }
 
 .navList {
@@ -24,6 +28,10 @@
   display: inline-block;
   text-decoration: none;
   font-size: 16px;
-  color: #ffffff;
+  color: #800028;
   padding: 28px 32px;
+}
+
+.navList > li > a:hover {
+  color: #b30039;
 }
