@@ -1,10 +1,32 @@
 .footer {
+  display: block;
+  height: 150px;
+  font-size: 14px;
+  background-color: #1a1a1a;
+  color: #b3b3b3;
+  margin-top: 30px;
+}
+
+.navList {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 150px;
+  list-style-type: none;
+}
+
+.navList > li > a {
+  display: inline-block;
+  text-decoration: none;
   font-size: 16px;
-  background-color: #1a1a1a;
-  color: #ffffff;
-  margin-top: 30px;
+  color: inherit;
+  margin: 25px 20px 15px;
+}
+
+.navList > li > a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer > div {
+  text-align: center;
+  margin-top: 10px;
 }

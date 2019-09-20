@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import styles from './styles.css';
-import Navbar from '../Navbar/Navbar';
+// import Navbar from '../Navbar/Navbar';
 import Home from '../Home/Home';
 import About from '../About/About';
 import Contact from '../Contact/Contact';
@@ -14,7 +14,6 @@ import NotFound from '../NotFound/NotFound';
 export default function App() {
   return (
     <div className={styles.app}>
-      <Navbar />
       <Switch>
         <Route exact path="/ssr" component={Home} />
         <Route exact path="/ssr/about" component={About} />
