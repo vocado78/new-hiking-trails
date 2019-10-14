@@ -1,10 +1,4 @@
 import firebase from 'firebase-admin';
-// import {
-//   projectId,
-//   clientEmail,
-//   projectKey,
-//   databaseURL
-// } from '../credentials';
 import config from '../config';
 
 const env = process.env.NODE_ENV || 'development';

@@ -11,7 +11,7 @@ const env = process.env.NODE_ENV || 'development';
 const { homePath, mapsApiKey } = config[env];
 
 export default function renderRoutes(req, res) {
-  const url = req.url === '/' ? '/ssr' : `/ssr${req.url}`;
+  const url = req.url === '/' ? `${homePath}` : `${homePath}${req.url}`;
   const currentRoute = routes.find(route => matchPath(url, route)) || {};
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
 
