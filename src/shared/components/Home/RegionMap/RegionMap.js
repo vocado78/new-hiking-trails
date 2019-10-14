@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
+import config from '../../../../../config';
+
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
+
 
 export default class RegionMap extends Component {
   constructor(props) {
@@ -52,7 +57,7 @@ export default class RegionMap extends Component {
       <div className={styles.regionMap}>
         <Link
           to={{
-            pathname: `/ssr/results/${region}`
+            pathname: `${homePath}/results/${region}`
           }}
         >
           <svg

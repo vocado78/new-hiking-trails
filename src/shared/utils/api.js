@@ -1,11 +1,13 @@
 import fetch from 'isomorphic-fetch';
+import config from '../../../config';
 
-export default function fetchTrails(req = {}) {
-  // eslint-disable-next-line no-undef
-  const root = __isBrowser__ ? `${window.location.protocol}//${window.location.host}`
-    : `${req.protocol}://${req.hostname}`;
+const env = process.env.NODE_ENV || 'development';
+const { baseUrl, homePath } = config[env];
 
-  return fetch(`${root}/ssr/api/trails`)
+export default function fetchTrails() {
+  const url = `${baseUrl}${homePath}/api/trails`;
+
+  return fetch(`${url}`)
     .then((response) => {
       if (response.ok) {
         return response.json();

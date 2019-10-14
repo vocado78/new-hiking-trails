@@ -4,6 +4,11 @@ import styles from './styles.css';
 import content from '../../../utils/content';
 import Button from '../../Button/Button';
 import PageTitle from '../../PageTitle/PageTitle';
+import config from '../../../../../config';
+
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
+
 
 export default function Welcome() {
   const { title, first, second } = content.home.welcome;
@@ -14,7 +19,7 @@ export default function Welcome() {
         <p>{first}</p>
         <p>{second}</p>
         <Button
-          path="/ssr/about"
+          path={`${homePath}/about`}
           label="Read More"
         />
       </div>

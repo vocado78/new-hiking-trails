@@ -4,6 +4,11 @@ import { listType } from '../../../utils/types';
 
 import styles from './styles.css';
 import ListItem from './ListItem/ListItem';
+import config from '../../../../../config';
+
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
+
 
 export default function List({
   results,
@@ -46,7 +51,7 @@ export default function List({
           .map(trail => (
             <Link
               to={{
-                pathname: `/ssr/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
+                pathname: `${homePath}/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
                 state: trail
               }}
               key={trail.name}
