@@ -9,12 +9,9 @@ const env = process.env.NODE_ENV || 'development';
 const { homePath } = config[env];
 
 export default class RegionSelect extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      region: ''
-    };
-  }
+  state = {
+    region: ''
+  };
 
   handleSelect = (event) => {
     this.setState({ region: event.target.value });

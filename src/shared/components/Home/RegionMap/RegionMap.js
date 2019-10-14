@@ -9,19 +9,16 @@ const { homePath } = config[env];
 
 
 export default class RegionMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      region: '',
-      regionColor: {
-        'northern-norrland': '#bfbfbf',
-        'southern-norrland': '#bfbfbf',
-        svealand: '#bfbfbf',
-        'northern-gotaland': '#bfbfbf',
-        'southern-gotaland': '#bfbfbf'
-      }
-    };
-  }
+  state = {
+    region: '',
+    regionColor: {
+      'northern-norrland': '#bfbfbf',
+      'southern-norrland': '#bfbfbf',
+      svealand: '#bfbfbf',
+      'northern-gotaland': '#bfbfbf',
+      'southern-gotaland': '#bfbfbf'
+    }
+  };
 
   handleMouseEnter = (id) => {
     this.setState({
