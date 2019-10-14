@@ -1,5 +1,5 @@
 import {
-  shape, number, string, objectOf, func, arrayOf, oneOfType
+  shape, number, string, objectOf, func, arrayOf, oneOfType, node
 } from 'prop-types';
 
 export const buttonType = {
@@ -12,6 +12,10 @@ export const buttonType = {
 export const pageTitleType = {
   title: string.isRequired,
   page: string.isRequired
+};
+
+export const pageType = {
+  children: node.isRequired
 };
 
 export const checkOrRadioButtonType = {
