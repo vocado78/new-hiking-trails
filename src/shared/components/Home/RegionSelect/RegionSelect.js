@@ -13,14 +13,14 @@ export default class RegionSelect extends Component {
   static contextType = TrailContext;
 
   render() {
-    const { region } = this.context;
+    const { region, onRegionSelect } = this.context;
 
     return (
       <form className={styles.form}>
         <select
           className={styles.select}
           value={region}
-          onChange={e => this.context.onRegionSelect(e)}
+          onChange={e => onRegionSelect(e)}
         >
           {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>

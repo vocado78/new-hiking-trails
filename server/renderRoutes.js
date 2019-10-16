@@ -4,6 +4,7 @@ import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
 import App from '../src/shared/components/App/App';
+import TrailStore from '../src/client/TrailStore/TrailStore';
 import routes from './routes';
 import config from '../config';
 import getInitialState from './getInitialState';
@@ -17,11 +18,12 @@ export default function renderRoutes(req, res) {
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
 
   promise.then((data) => {
-    const context = getInitialState(req, data);
-    console.log('this is context from server:', context);
+    const initialState = getInitialState(req, data);
     const component = renderToString(
-      <StaticRouter location={url} context={context}>
-        <App />
+      <StaticRouter location={url} context={{}}>
+        <TrailStore initialState={initialState}>
+          <App />
+        </TrailStore>
       </StaticRouter>
     );
 
@@ -37,7 +39,7 @@ export default function renderRoutes(req, res) {
         <div id="app">${component}</div>
       </body>
       <script src="https://maps.googleapis.com/maps/api/js?key=${mapsApiKey}"></script>
-      <script>window.__INITIAL_DATA__=${serialize(context)}</script>
+      <script>window.__INITIAL_DATA__=${serialize(initialState)}</script>
       <script src=${`${homePath}/bundle.js`}></script>
     </html>
     `;

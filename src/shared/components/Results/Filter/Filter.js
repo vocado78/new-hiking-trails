@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterType } from '../../../utils/types';
+// import { filterType } from '../../../utils/types';
 
 import styles from './styles.css';
 import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
@@ -7,7 +7,7 @@ import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 import Button from '../../Button/Button';
 import content from '../../../utils/content';
 import { TrailContext } from '../../../../client/TrailStore/TrailContext';
-import { filterOptions } from '../../../utils/helpers';
+import { filterOptions, sanitize } from '../../../utils/helpers';
 
 
 export default class Filter extends React.Component {
@@ -36,7 +36,7 @@ export default class Filter extends React.Component {
         <p>
           {subtitle}
           {' '}
-          {region}
+          {sanitize(region)}
         </p>
         <ProvinceSelect
           title="Province"
@@ -86,4 +86,4 @@ export default class Filter extends React.Component {
   }
 }
 
-Filter.propTypes = filterType;
+// Filter.propTypes = filterType;

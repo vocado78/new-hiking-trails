@@ -3,9 +3,7 @@
 import React from 'react';
 
 import styles from './styles.css';
-import {
-  unSanitize
-} from '../../utils/helpers';
+import { sanitize } from '../../utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
@@ -17,7 +15,7 @@ class Results extends React.Component {
   static contextType = TrailContext;
 
   render() {
-    const region = unSanitize(this.context.region);
+    const region = sanitize(this.context.region);
 
     // FIX rendering of not found component
     // if (!this.context.trails.length) {
