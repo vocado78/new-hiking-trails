@@ -1,5 +1,5 @@
 import {
-  shape, number, string, func, arrayOf, oneOfType, node
+  shape, number, string, func, objectOf, arrayOf, oneOfType, node
 } from 'prop-types';
 
 export const buttonType = {
@@ -70,24 +70,15 @@ export const listItemDataType = shape({
 });
 
 export const descriptionType = {
-  access: string.isRequired,
-  complete: string.isRequired,
-  description: string.isRequired,
-  landscape: string.isRequired,
-  moreInfo: string.isRequired
+  trail: listItemDataType
 };
 
 export const keyFactsType = {
-  connect: string.isRequired,
-  distance: string.isRequired,
-  duration: arrayOf(string).isRequired,
-  finish: string.isRequired,
-  level: string.isRequired,
-  province: string.isRequired,
-  stageDistances: string.isRequired,
-  stages: number.isRequired,
-  start: string.isRequired,
-  comfort: arrayOf(string).isRequired
+  trail: listItemDataType
+};
+
+export const mapType = {
+  trail: listItemDataType
 };
 
 export const trailDetailType = {

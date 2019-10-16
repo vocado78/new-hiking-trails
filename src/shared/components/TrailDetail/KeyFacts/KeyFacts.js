@@ -4,16 +4,18 @@ import { keyFactsType } from '../../../utils/types';
 import styles from './styles.css';
 
 export default function KeyFacts({
-  connect,
-  distance,
-  duration,
-  finish,
-  level,
-  province,
-  stageDistances,
-  stages,
-  start,
-  comfort
+  trail: {
+    connect,
+    distance,
+    duration,
+    finish,
+    level,
+    province,
+    stageDistances,
+    stages,
+    start,
+    comfort
+  }
 }) {
   const keyFacts = [
     {
@@ -58,18 +60,20 @@ export default function KeyFacts({
     }
   ];
 
+  const facts = keyFacts.map((fact) => {
+    return (
+      <li key={fact.title}>
+        <span>{fact.title}</span>
+        <br />
+        {fact.data}
+      </li>
+    );
+  });
+
   return (
     <div className={styles.keyFacts}>
       <h3>Key Facts</h3>
-      <ul>
-        {keyFacts.map(fact => (
-          <li key={fact.title}>
-            <span>{fact.title}</span>
-            <br />
-            {fact.data}
-          </li>
-        ))}
-      </ul>
+      <ul>{facts}</ul>
     </div>
   );
 }
