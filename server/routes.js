@@ -13,8 +13,7 @@ const routes = [
   {
     path: homePath,
     exact: true,
-    component: Home,
-    getTrails: () => fetchTrails()
+    component: Home
   },
   {
     path: `${homePath}/results/:region`,

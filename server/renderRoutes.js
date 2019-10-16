@@ -6,6 +6,7 @@ import serialize from 'serialize-javascript';
 import App from '../src/shared/components/App/App';
 import routes from './routes';
 import config from '../config';
+import getInitialState from './getInitialState';
 
 const env = process.env.NODE_ENV || 'development';
 const { homePath, mapsApiKey } = config[env];
@@ -16,7 +17,8 @@ export default function renderRoutes(req, res) {
   const promise = currentRoute.getTrails ? currentRoute.getTrails() : Promise.resolve();
 
   promise.then((data) => {
-    const context = { data };
+    const context = getInitialState(req, data);
+    console.log('this is context from server:', context);
     const component = renderToString(
       <StaticRouter location={url} context={context}>
         <App />
@@ -35,7 +37,7 @@ export default function renderRoutes(req, res) {
         <div id="app">${component}</div>
       </body>
       <script src="https://maps.googleapis.com/maps/api/js?key=${mapsApiKey}"></script>
-      <script>window.__INITIAL_DATA__=${serialize(data)}</script>
+      <script>window.__INITIAL_DATA__=${serialize(context)}</script>
       <script src=${`${homePath}/bundle.js`}></script>
     </html>
     `;

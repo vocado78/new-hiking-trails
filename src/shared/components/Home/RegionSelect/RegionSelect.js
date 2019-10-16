@@ -4,28 +4,23 @@ import { regions } from '../../../utils/helpers';
 import styles from './styles.css';
 import Button from '../../Button/Button';
 import config from '../../../../../config';
+import { TrailContext } from '../../../../client/TrailStore/TrailContext';
 
 const env = process.env.NODE_ENV || 'development';
 const { homePath } = config[env];
 
 export default class RegionSelect extends Component {
-  state = {
-    region: ''
-  };
-
-  handleSelect = (event) => {
-    this.setState({ region: event.target.value });
-  }
+  static contextType = TrailContext;
 
   render() {
-    const { region } = this.state;
+    const { region } = this.context;
 
     return (
       <form className={styles.form}>
         <select
           className={styles.select}
           value={region}
-          onChange={this.handleSelect}
+          onChange={e => this.context.onRegionSelect(e)}
         >
           {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>
