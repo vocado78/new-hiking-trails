@@ -3,12 +3,12 @@
 import React, { Component } from 'react';
 
 import { TrailContext } from './TrailContext';
-import fetchTrails from '../../shared/utils/api';
+import fetchTrails from '../utils/api';
 import {
   capitalize,
   showTrails,
   showProvinces
-} from '../../shared/utils/helpers';
+} from '../utils/helpers';
 
 export default class TrailStore extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
 import App from '../src/shared/components/App/App';
-import TrailStore from '../src/client/TrailStore/TrailStore';
+import TrailStore from '../src/shared/TrailStore/TrailStore';
 import routes from './routes';
 import config from '../config';
 import getInitialState from './getInitialState';

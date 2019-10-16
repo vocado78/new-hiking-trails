@@ -7,7 +7,7 @@ import { sanitize } from '../../utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
-import { TrailContext } from '../../../client/TrailStore/TrailContext';
+import { TrailContext } from '../../TrailStore/TrailContext';
 // import NotFound from '../NotFound/NotFound';
 
 
