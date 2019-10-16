@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { trailStoreType } from '../utils/types';
-import { TrailContext } from './TrailContext';
+import TrailContext from './TrailContext';
 import fetchTrails from '../utils/api';
 import { showTrails, showProvinces } from '../utils/helpers';
 

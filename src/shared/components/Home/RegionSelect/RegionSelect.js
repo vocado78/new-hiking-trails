@@ -4,7 +4,7 @@ import { regions } from '../../../utils/helpers';
 import styles from './styles.css';
 import Button from '../../Button/Button';
 import config from '../../../../../config';
-import { TrailContext } from '../../../TrailStore/TrailContext';
+import TrailContext from '../../../TrailStore/TrailContext';
 
 const env = process.env.NODE_ENV || 'development';
 const { homePath } = config[env];

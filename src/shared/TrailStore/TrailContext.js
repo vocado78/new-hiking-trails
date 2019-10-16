@@ -1,4 +1,5 @@
 import React from 'react';
 
-// eslint-disable-next-line import/prefer-default-export
-export const TrailContext = React.createContext();
+const TrailContext = React.createContext();
+
+export default TrailContext;

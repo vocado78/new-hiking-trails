@@ -1,17 +1,15 @@
-/* eslint-disable react/prop-types */
-
-import React from 'react';
+import React, { Component } from 'react';
 
 import styles from './styles.css';
 import { sanitize } from '../../utils/helpers';
 import Filter from './Filter/Filter';
 import List from './List/List';
 import PageTitle from '../PageTitle/PageTitle';
-import { TrailContext } from '../../TrailStore/TrailContext';
+import TrailContext from '../../TrailStore/TrailContext';
 // import NotFound from '../NotFound/NotFound';
 
 
-class Results extends React.Component {
+export default class Results extends Component {
   static contextType = TrailContext;
 
   render() {
@@ -33,5 +31,3 @@ class Results extends React.Component {
     );
   }
 }
-
-export default Results;

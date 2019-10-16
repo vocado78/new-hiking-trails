@@ -6,7 +6,7 @@ import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
 import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 import Button from '../../Button/Button';
 import content from '../../../utils/content';
-import { TrailContext } from '../../../TrailStore/TrailContext';
+import TrailContext from '../../../TrailStore/TrailContext';
 import { filterOptions, sanitize } from '../../../utils/helpers';
 
 
