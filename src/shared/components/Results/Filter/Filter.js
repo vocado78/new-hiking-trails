@@ -47,7 +47,7 @@ export default class Filter extends React.Component {
         />
         <CheckOrRadioButton
           title="Number of days I want to hike"
-          name="day"
+          name="Day"
           type="radio"
           handleChange={e => onSelect(e)}
           options={duration}
@@ -55,7 +55,7 @@ export default class Filter extends React.Component {
         />
         <CheckOrRadioButton
           title="Level of Difficulty"
-          name="level"
+          name="Level"
           type="checkbox"
           handleChange={e => onSelect(e)}
           options={level}
@@ -63,7 +63,7 @@ export default class Filter extends React.Component {
         />
         <CheckOrRadioButton
           title="Comfort"
-          name="comfort"
+          name="Comfort"
           type="radio"
           handleChange={e => onSelect(e)}
           options={comfort}
@@ -71,7 +71,7 @@ export default class Filter extends React.Component {
         />
         <CheckOrRadioButton
           title="Services availability"
-          name="service"
+          name="Service"
           type="radio"
           handleChange={e => onSelect(e)}
           options={services}

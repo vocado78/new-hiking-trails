@@ -116,3 +116,7 @@ export const trailDetailType = {
     state: listItemDataType
   })
 };
+
+export const trailStoreType = {
+  children: node.isRequired
+};

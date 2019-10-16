@@ -1,14 +1,10 @@
-/* eslint-disable react/prop-types */
-
 import React, { Component } from 'react';
 
+import { trailStoreType } from '../utils/types';
 import { TrailContext } from './TrailContext';
 import fetchTrails from '../utils/api';
-import {
-  capitalize,
-  showTrails,
-  showProvinces
-} from '../utils/helpers';
+import { showTrails, showProvinces } from '../utils/helpers';
+
 
 export default class TrailStore extends Component {
   constructor(props) {
@@ -38,25 +34,17 @@ export default class TrailStore extends Component {
     this.getTrails(region);
   }
 
-  getTrails = (region) => {
-    fetchTrails()
-      .then((trailData) => {
-        this.setState({
-          trails: showTrails(trailData, region),
-          provinces: showProvinces(region)
-        });
-      });
-  }
-
   handleLevelSelect = (event) => {
     const { selections: { selectedLevel } } = this.state;
     const newLevel = event.target.value;
     let newSelectedLevel;
+
     if (selectedLevel.includes(newLevel)) {
       newSelectedLevel = selectedLevel.filter(level => level !== newLevel);
     } else {
       newSelectedLevel = [...selectedLevel, newLevel];
     }
+
     this.setState(prevState => ({
       selections: {
         ...prevState.selections,
@@ -67,17 +55,17 @@ export default class TrailStore extends Component {
 
   handleSelects = (event) => {
     const { selections } = this.state;
-    const keys = Object.keys(selections);
-    const inputName = capitalize(event.target.name);
-    const key = keys.filter(k => k === `selected${inputName}`);
+    const selectType = Object.keys(selections).filter((key) => {
+      return key === `selected${event.target.name}`;
+    });
 
-    if (key[0] === 'selectedLevel') {
+    if (selectType[0] === 'selectedLevel') {
       this.handleLevelSelect(event);
     } else {
       this.setState({
         selections: {
           ...selections,
-          [key]: event.target.value
+          [selectType]: event.target.value
         }
       });
     }
@@ -100,6 +88,16 @@ export default class TrailStore extends Component {
     });
   }
 
+  getTrails = (region) => {
+    fetchTrails()
+      .then((trailData) => {
+        this.setState({
+          trails: showTrails(trailData, region),
+          provinces: showProvinces(region)
+        });
+      });
+  }
+
   render() {
     return (
       <TrailContext.Provider value={{ ...this.state, onRegionSelect: this.handleRegionSelect, onSelect: this.handleSelects, onClick: this.handleClick }}>
@@ -108,3 +106,5 @@ export default class TrailStore extends Component {
     );
   }
 }
+
+TrailStore.propTypes = trailStoreType;
