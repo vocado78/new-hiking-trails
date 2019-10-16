@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { listType } from '../../../utils/types';
 
 import styles from './styles.css';
 import ListItem from './ListItem/ListItem';
@@ -25,8 +24,29 @@ export default class List extends React.Component {
         selectedComfort
       }
     } = this.context;
-    const data = trails;
-    let listing = data;
+
+    const renderListItems = (list) => {
+      return list
+        .filter((item, i, ar) => ar.indexOf(item) === i)
+        .map((trail) => {
+          return (
+            <Link
+              to={{
+                pathname: `${homePath}/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
+                state: trail
+              }}
+              key={trail.name}
+            >
+              <li>
+                <ListItem data={trail} />
+              </li>
+            </Link>
+          );
+        });
+    };
+
+    // const data = trails;
+    let listing = trails;
 
     if (selectedProvince && selectedProvince.length >= 1) {
       listing = listing.filter(trail => trail.province === selectedProvince);
@@ -51,25 +71,9 @@ export default class List extends React.Component {
     return (
       <div className={styles.list}>
         <ul>
-          {listing
-            .filter((item, i, ar) => ar.indexOf(item) === i)
-            .map(trail => (
-              <Link
-                to={{
-                  pathname: `${homePath}/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
-                  state: trail
-                }}
-                key={trail.name}
-              >
-                <li>
-                  <ListItem data={trail} />
-                </li>
-              </Link>
-            ))}
+          {renderListItems(listing)}
         </ul>
       </div>
     );
   }
 }
-
-// List.propTypes = listType.isRequired;

@@ -1,5 +1,5 @@
 import {
-  shape, number, string, objectOf, func, arrayOf, oneOfType, node
+  shape, number, string, func, arrayOf, oneOfType, node
 } from 'prop-types';
 
 export const buttonType = {
@@ -41,22 +41,6 @@ export const provinceSelectType = {
   title: string.isRequired,
 };
 
-export const filterType = {
-  region: string.isRequired,
-  options: objectOf(
-    arrayOf(string)
-  ).isRequired,
-  selections: shape({
-    selectedProvince: string,
-    selectedComfort: string,
-    selectedDay: string,
-    selectedLevel: arrayOf(string),
-    selectedService: string
-  }).isRequired,
-  onSelect: func.isRequired,
-  handleClick: func.isRequired
-};
-
 export const listItemDataType = shape({
   name: string,
   region: string,
@@ -84,11 +68,6 @@ export const listItemDataType = shape({
   access: string,
   moreInfo: string
 });
-
-export const listType = {
-  results: arrayOf(listItemDataType),
-  selections: filterType.selections
-};
 
 export const descriptionType = {
   access: string.isRequired,

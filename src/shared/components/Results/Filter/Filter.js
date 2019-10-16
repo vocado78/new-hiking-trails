@@ -1,5 +1,4 @@
 import React from 'react';
-// import { filterType } from '../../../utils/types';
 
 import styles from './styles.css';
 import CheckOrRadioButton from './CheckOrRadioButton/CheckOrRadionButton';
@@ -85,5 +84,3 @@ export default class Filter extends React.Component {
     );
   }
 }
-
-// Filter.propTypes = filterType;

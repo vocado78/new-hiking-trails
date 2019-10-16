@@ -10,9 +10,18 @@ export default function ProvinceSelect({
   selectedOption,
   title
 }) {
+  const renderOptions = () => {
+    return options.map((province) => {
+      return (
+        <option key={province} value={province}>
+          {province}
+        </option>
+      );
+    });
+  };
+
   return (
     <div className={styles.formRow}>
-      {/* eslint-disable-next-line jsx-a11y/label-has-for */}
       <label htmlFor={title} className={styles.labelTitle}>{title}</label>
       <select
         value={selectedOption}
@@ -20,11 +29,7 @@ export default function ProvinceSelect({
         name={title}
       >
         <option value="">{placeholder}</option>
-        {options.map(province => (
-          <option key={province} value={province}>
-            {province}
-          </option>
-        ))}
+        {renderOptions()}
       </select>
     </div>
   );

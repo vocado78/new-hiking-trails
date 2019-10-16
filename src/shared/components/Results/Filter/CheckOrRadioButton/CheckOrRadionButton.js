@@ -11,11 +11,9 @@ export default function CheckOrRadioButton({
   title,
   type
 }) {
-  return (
-    <div className={styles.formRow}>
-      {/* eslint-disable-next-line jsx-a11y/label-has-for */}
-      <label htmlFor={name} className={styles.labelTitle}>{title}</label>
-      {options.map(option => (
+  const renderOptions = () => {
+    return options.map((option) => {
+      return (
         <div key={option}>
           <input
             name={name}
@@ -27,7 +25,14 @@ export default function CheckOrRadioButton({
           {' '}
           {option}
         </div>
-      ))}
+      );
+    });
+  };
+
+  return (
+    <div className={styles.formRow}>
+      <label htmlFor={name} className={styles.labelTitle}>{title}</label>
+      {renderOptions()}
     </div>
   );
 }
