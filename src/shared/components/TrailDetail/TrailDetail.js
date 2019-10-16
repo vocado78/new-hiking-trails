@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 
 import { trailDetailType } from '../../utils/types';
-import Map from './Map/map';
+import Map from './Map/Map';
 import PageTitle from '../PageTitle/PageTitle';
 import Description from './Description/Description';
 import KeyFacts from './KeyFacts/KeyFacts';

@@ -28,15 +28,12 @@ export default class Filter extends React.Component {
       onSelect,
       onClick
     } = this.context;
+    const sanitizedRegion = sanitize(region);
 
     return (
       <form className={styles.filter}>
         <p>{title}</p>
-        <p>
-          {subtitle}
-          {' '}
-          {sanitize(region)}
-        </p>
+        <p>{`${subtitle} ${sanitizedRegion}`}</p>
         <ProvinceSelect
           title="Province"
           placeholder="Please select"

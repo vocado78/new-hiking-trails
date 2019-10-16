@@ -1,5 +1,5 @@
 import {
-  shape, number, string, func, objectOf, arrayOf, oneOfType, node
+  shape, number, string, func, arrayOf, oneOfType, node
 } from 'prop-types';
 
 export const buttonType = {
