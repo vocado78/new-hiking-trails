@@ -34,13 +34,11 @@ export default class TrailDetail extends Component {
       trail = this.props.location.state;
     }
 
-    const { name } = trail;
-
     return (
       <div className={styles.detailContainer}>
         <PageTitle
           page="Trail Details"
-          title={name}
+          title={trail.name}
         />
         <div className={styles.detailTextMapContainer}>
           <Description trail={trail} />

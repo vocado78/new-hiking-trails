@@ -14,7 +14,7 @@ export default class TrailStore extends Component {
 
     this.state = {
       trails: trails || [],
-      trail: trail || {},
+      trail: trail || null,
       region: region || '',
       provinces: provinces || [],
       selections: {
@@ -27,8 +27,8 @@ export default class TrailStore extends Component {
     };
   }
 
-  handleRegionSelect = (event) => {
-    const region = event.target.value;
+  handleRegionSelect = (event, id = '') => {
+    const region = event ? event.target.value : id;
 
     this.setState({ region });
     this.getTrails(region);

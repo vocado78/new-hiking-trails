@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
 import config from '../../../../../config';
+import TrailContext from '../../../TrailStore/TrailContext';
 
 const env = process.env.NODE_ENV || 'development';
 const { homePath } = config[env];
 
 
 export default class RegionMap extends Component {
+  static contextType = TrailContext;
+
   state = {
     region: '',
     regionColor: {
@@ -27,6 +30,7 @@ export default class RegionMap extends Component {
         [id]: '#b3003b'
       }
     });
+    this.context.onRegionSelect(null, id);
   }
 
   handleMouseLeave = (id) => {

@@ -7,7 +7,7 @@ export default function getInitialState(req, data) {
   let id = '';
   let region = '';
   let trails = [];
-  let trail = {};
+  let trail = null;
   let provinces = [];
 
   if (req.url.includes('trail-detail')) {
