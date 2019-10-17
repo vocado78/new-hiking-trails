@@ -1,5 +1,3 @@
-/* global __isBrowser__ */
-
 import React, { Component } from 'react';
 
 import { trailDetailType } from '../../utils/types';
@@ -29,7 +27,13 @@ export default class TrailDetail extends Component {
     //   return <NotFound />;
     // }
 
-    const trail = __isBrowser__ ? this.props.location.state : this.context.trail;
+    let trail = {};
+    if (this.context.trail) {
+      ({ trail } = this.context);
+    } else {
+      trail = this.props.location.state;
+    }
+
     const { name } = trail;
 
     return (

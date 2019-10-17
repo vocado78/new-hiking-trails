@@ -4,11 +4,17 @@ import {
 } from '../src/shared/utils/helpers';
 
 export default function getInitialState(req, data) {
-  const id = req.params.id || ''; // fix this
-  const region = req.params[0].split('/')[2] || '';
+  let id = '';
+  let region = '';
   let trails = [];
   let trail = {};
   let provinces = [];
+
+  if (req.url.includes('trail-detail')) {
+    id = req.url.split('/').pop();
+  } else {
+    region = req.url.split('/').pop();
+  }
 
   if (region) {
     trails = showTrails(data, region);
