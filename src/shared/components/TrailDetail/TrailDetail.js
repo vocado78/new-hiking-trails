@@ -22,10 +22,7 @@ export default class TrailDetail extends Component {
   }
 
   render() {
-    // FIX rendering of not found component
-    // if (!this.state.trailData) {
-    //   return <NotFound />;
-    // }
+    // FIX rendering of not found component if no trail found
 
     let trail = {};
     if (this.context.trail) {

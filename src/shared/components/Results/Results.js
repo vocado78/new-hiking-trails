@@ -15,10 +15,7 @@ export default class Results extends Component {
   render() {
     const region = sanitize(this.context.region);
 
-    // FIX rendering of not found component
-    // if (!this.context.trails.length) {
-    //   return <NotFound />;
-    // }
+    // FIX rendering of not found component if no trails found
 
     return (
       <div className={styles.results}>
