@@ -1,14 +1,20 @@
 import firebase from 'firebase-admin';
+import {
+  projectId,
+  clientEmail,
+  projectKey,
+  databaseURL
+} from '../credentials';
 
-const privateKey = `-----BEGIN PRIVATE KEY-----\n${process.env.FIREBASE_KEY}\n-----END PRIVATE KEY-----\n`;
+const privateKey = `-----BEGIN PRIVATE KEY-----\n${projectKey}\n-----END PRIVATE KEY-----\n`;
 
 firebase.initializeApp({
   credential: firebase.credential.cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    projectId,
+    clientEmail,
     privateKey: privateKey.replace(/\\n/g, '\n')
   }),
-  databaseURL: process.env.DATABASE_URL
+  databaseURL
 });
 
 const db = firebase.database();

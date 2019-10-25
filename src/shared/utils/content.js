@@ -24,7 +24,7 @@ const content = {
     }
   },
   footer: {
-    text: '© 2019 Hiking Trails in Sweden — a project by vocado78'
+    text: '© 2019 Hiking Trails in Sweden'
   }
 };
 

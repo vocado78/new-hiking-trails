@@ -1,6 +1,10 @@
 node_modules
+.DS_Store
 .env
 firebase-adminsdk.json
 trails.json
-dist
 npm-debug.log
+credentials.js
+functions/public
+functions/src/
+functions/index.js

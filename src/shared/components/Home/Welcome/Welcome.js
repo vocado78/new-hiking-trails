@@ -14,7 +14,7 @@ export default function Welcome() {
         <p>{first}</p>
         <p>{second}</p>
         <Button
-          path="/about"
+          path="/ssr/about"
           label="Read More"
         />
       </div>

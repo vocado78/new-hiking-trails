@@ -1,19 +1,20 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const serverConfig = {
-  mode: 'development',
+  mode: 'production',
   target: 'node',
   node: {
     __dirname: false
   },
   entry: {
-    'index.js': path.resolve(__dirname, 'src/server/index.js')
+    'index.js': path.resolve(__dirname, 'server/index.js')
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'functions'),
     filename: '[name]',
     libraryTarget: 'commonjs2'
   },
@@ -52,21 +53,13 @@ const serverConfig = {
       maxChunks: 1
     }),
     new webpack.DefinePlugin({
-      __isBrowser__: 'false'
-    })
-  ]
-};
-
-if (process.env.NODE_ENV === 'production') {
-  serverConfig.plugins.push(
-    new webpack.DefinePlugin({
+      __isBrowser__: 'false',
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
+    })
+  ]
+};
 
 const clientConfig = {
   mode: 'development',
@@ -75,7 +68,7 @@ const clientConfig = {
     'index.js': path.resolve(__dirname, 'src/client/index.js')
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'functions/public'),
     filename: 'bundle.js'
   },
   module: {
@@ -109,20 +102,12 @@ const clientConfig = {
       filename: 'styles.css'
     }),
     new webpack.DefinePlugin({
-      __isBrowser__: 'true'
-    })
-  ]
-};
-
-if (process.env.NODE_ENV === 'production') {
-  clientConfig.plugins.push(
-    new webpack.DefinePlugin({
+      __isBrowser__: 'true',
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
-  );
-}
+    })
+  ]
+};
 
 module.exports = [serverConfig, clientConfig];

@@ -62,7 +62,7 @@ const regions = [
     value: 'southern-gotaland'
   },
   {
-    label: 'Show all',
+    label: 'All',
     value: 'all'
   }
 ];
@@ -78,7 +78,6 @@ const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
 const unSanitize = (str) => {
   const result = regions.find(region => region.value === str);
-  console.log('result from unSanitize region is:', result);
   return result.label;
 };
 

@@ -29,7 +29,7 @@ export default class RegionSelect extends Component {
           {regions.map(item => <option key={item.label} value={item.value}>{item.label}</option>)}
         </select>
         <Button
-          path={`/results/${region}`}
+          path={`/ssr/results/${region}`}
           label="Go"
         />
       </form>
