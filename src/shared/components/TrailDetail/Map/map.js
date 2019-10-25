@@ -32,12 +32,12 @@ export default class Map extends React.Component {
       startLon,
       finLat,
       finLon,
-      midLat,
-      midLon
+      middleLat,
+      middleLon
     } = this.props.trail;
     const start = new google.maps.LatLng(startLat, startLon);
     const finish = new google.maps.LatLng(finLat, finLon);
-    const middle = new google.maps.LatLng(midLat, midLon);
+    const middle = new google.maps.LatLng(middleLat, middleLon);
     const options = { center: middle, zoom: 8 };
     const trailMap = new google.maps.Map(document.getElementById('map'), options);
 
