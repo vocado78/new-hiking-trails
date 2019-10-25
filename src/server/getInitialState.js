@@ -1,7 +1,7 @@
 import {
   showTrails,
   showProvinces
-} from '../src/shared/utils/helpers';
+} from '../shared/utils/helpers';
 
 export default function getInitialState(req, data) {
   let id = '';

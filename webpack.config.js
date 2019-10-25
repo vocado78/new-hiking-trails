@@ -11,7 +11,7 @@ const serverConfig = {
     __dirname: false
   },
   entry: {
-    'index.js': path.resolve(__dirname, 'server/index.js')
+    'index.js': path.resolve(__dirname, 'src/server/index.js')
   },
   output: {
     path: path.resolve(__dirname, 'functions'),

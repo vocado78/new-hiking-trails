@@ -3,10 +3,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 
-import App from '../src/shared/components/App/App';
-import TrailStore from '../src/shared/TrailStore/TrailStore';
+import App from '../shared/components/App/App';
+import TrailStore from '../shared/TrailStore/TrailStore';
 import routes from './routes';
-import config from '../config';
+import config from '../../config';
 import getInitialState from './getInitialState';
 
 const env = process.env.NODE_ENV || 'development';

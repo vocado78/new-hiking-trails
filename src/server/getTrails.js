@@ -1,5 +1,5 @@
 import firebase from 'firebase-admin';
-import config from '../config';
+import config from '../../config';
 
 const env = process.env.NODE_ENV || 'development';
 const { database: { projectId, clientEmail, projectKey, url } } = config[env];
