@@ -76,7 +76,7 @@ const filterOptions = {
 
 const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
-const unSanitize = (str) => {
+const sanitize = (str) => {
   const result = regions.find(region => region.value === str);
   return result.label;
 };
@@ -115,5 +115,5 @@ module.exports = {
   showProvinces,
   filterOptions,
   regions,
-  unSanitize
+  sanitize
 };

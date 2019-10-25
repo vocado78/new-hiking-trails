@@ -5,9 +5,9 @@ import styles from './styles.css';
 import content from '../../../../utils/content';
 
 export default function ListItem({ data }) {
-  // eslint-disable-next-line
   const { name, distance, title } = data;
   const { results: { listItem: { bullet1 } } } = content;
+
   return (
     <div className={styles.listItem}>
       <span>♣</span>

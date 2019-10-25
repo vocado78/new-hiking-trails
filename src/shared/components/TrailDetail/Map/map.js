@@ -2,26 +2,17 @@
 /* global google */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './styles.css';
+import { mapType } from '../../../utils/types';
 
 
 export default class Map extends React.Component {
-  static propTypes = {
-    startLat: PropTypes.number.isRequired,
-    startLon: PropTypes.number.isRequired,
-    midLat: PropTypes.number.isRequired,
-    midLon: PropTypes.number.isRequired,
-    finLat: PropTypes.number.isRequired,
-    finLon: PropTypes.number.isRequired
-  };
-
   componentDidMount() {
     this.createMap();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.startLat !== this.props.startLat) {
+    if (prevProps.trail.startLat !== this.props.trail.startLat) {
       this.createMap();
     }
   }
@@ -36,9 +27,17 @@ export default class Map extends React.Component {
   })
 
   createMap = () => {
-    const start = new google.maps.LatLng(this.props.startLat, this.props.startLon);
-    const finish = new google.maps.LatLng(this.props.finLat, this.props.finLon);
-    const middle = new google.maps.LatLng(this.props.midLat, this.props.midLon);
+    const {
+      startLat,
+      startLon,
+      finLat,
+      finLon,
+      midLat,
+      midLon
+    } = this.props.trail;
+    const start = new google.maps.LatLng(startLat, startLon);
+    const finish = new google.maps.LatLng(finLat, finLon);
+    const middle = new google.maps.LatLng(midLat, midLon);
     const options = { center: middle, zoom: 8 };
     const trailMap = new google.maps.Map(document.getElementById('map'), options);
 
@@ -63,3 +62,5 @@ export default class Map extends React.Component {
     );
   }
 }
+
+Map.propTypes = mapType.isRequired;

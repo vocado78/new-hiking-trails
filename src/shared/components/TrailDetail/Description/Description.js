@@ -4,11 +4,13 @@ import { descriptionType } from '../../../utils/types';
 import styles from './styles.css';
 
 export default function Description({
-  access,
-  complete,
-  description,
-  landscape,
-  moreInfo
+  trail: {
+    access,
+    complete,
+    description,
+    landscape,
+    moreInfo
+  }
 }) {
   return (
     <div className={styles.description}>

@@ -2,21 +2,26 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './styles.css';
+import config from '../../../../../config';
+import TrailContext from '../../../TrailStore/TrailContext';
+
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
+
 
 export default class RegionMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      region: '',
-      regionColor: {
-        'northern-norrland': '#bfbfbf',
-        'southern-norrland': '#bfbfbf',
-        svealand: '#bfbfbf',
-        'northern-gotaland': '#bfbfbf',
-        'southern-gotaland': '#bfbfbf'
-      }
-    };
-  }
+  static contextType = TrailContext;
+
+  state = {
+    region: '',
+    regionColor: {
+      'northern-norrland': '#bfbfbf',
+      'southern-norrland': '#bfbfbf',
+      svealand: '#bfbfbf',
+      'northern-gotaland': '#bfbfbf',
+      'southern-gotaland': '#bfbfbf'
+    }
+  };
 
   handleMouseEnter = (id) => {
     this.setState({
@@ -25,6 +30,7 @@ export default class RegionMap extends Component {
         [id]: '#b3003b'
       }
     });
+    this.context.onRegionSelect(null, id);
   }
 
   handleMouseLeave = (id) => {
@@ -52,7 +58,7 @@ export default class RegionMap extends Component {
       <div className={styles.regionMap}>
         <Link
           to={{
-            pathname: `/ssr/results/${region}`
+            pathname: `${homePath}/results/${region}`
           }}
         >
           <svg

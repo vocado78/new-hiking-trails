@@ -5,7 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const serverConfig = {
-  mode: 'production',
+  mode: 'development',
   target: 'node',
   node: {
     __dirname: false

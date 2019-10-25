@@ -1,11 +1,8 @@
 import firebase from 'firebase-admin';
-import {
-  projectId,
-  clientEmail,
-  projectKey,
-  databaseURL
-} from '../credentials';
+import config from '../config';
 
+const env = process.env.NODE_ENV || 'development';
+const { database: { projectId, clientEmail, projectKey, url } } = config[env];
 const privateKey = `-----BEGIN PRIVATE KEY-----\n${projectKey}\n-----END PRIVATE KEY-----\n`;
 
 firebase.initializeApp({
@@ -14,7 +11,7 @@ firebase.initializeApp({
     clientEmail,
     privateKey: privateKey.replace(/\\n/g, '\n')
   }),
-  databaseURL
+  databaseURL: url
 });
 
 const db = firebase.database();

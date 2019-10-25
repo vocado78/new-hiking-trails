@@ -4,32 +4,35 @@ import TrailDetail from '../src/shared/components/TrailDetail/TrailDetail';
 import About from '../src/shared/components/About/About';
 import Contact from '../src/shared/components/Contact/Contact';
 import fetchTrails from '../src/shared/utils/api';
+import config from '../config';
+
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
 
 const routes = [
   {
-    path: '/ssr',
+    path: homePath,
     exact: true,
-    component: Home,
-    getTrails: req => fetchTrails(req)
+    component: Home
   },
   {
-    path: '/ssr/results/:region',
+    path: `${homePath}/results/:region`,
     exact: true,
     component: Results,
-    getTrails: req => fetchTrails(req)
+    getTrails: () => fetchTrails()
   },
   {
-    path: '/ssr/results/trail-details/:id',
+    path: `${homePath}/results/trail-details/:id`,
     component: TrailDetail,
-    getTrails: req => fetchTrails(req)
+    getTrails: () => fetchTrails()
   },
   {
-    path: '/ssr/about',
+    path: `${homePath}/about`,
     exact: true,
     component: About
   },
   {
-    path: '/ssr/contact',
+    path: `${homePath}/contact`,
     exact: true,
     component: Contact
   }

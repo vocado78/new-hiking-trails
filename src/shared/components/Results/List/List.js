@@ -1,64 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { listType } from '../../../utils/types';
 
 import styles from './styles.css';
 import ListItem from './ListItem/ListItem';
+import config from '../../../../../config';
+import TrailContext from '../../../TrailStore/TrailContext';
+import filterList from './helpers';
 
-export default function List({
-  results,
-  selections: {
-    selectedProvince,
-    selectedService,
-    selectedDay,
-    selectedLevel,
-    selectedComfort
+const env = process.env.NODE_ENV || 'development';
+const { homePath } = config[env];
+
+
+export default class List extends React.Component {
+  static contextType = TrailContext;
+
+  static renderListItems(list) {
+    return list
+      .filter((item, i, ar) => ar.indexOf(item) === i)
+      .map((trail) => {
+        const name = trail.name.replace(' ', '').replace('ö', 'o').toLowerCase();
+
+        return (
+          <Link
+            to={{
+              pathname: `${homePath}/results/trail-details/${name}`,
+              state: trail
+            }}
+            key={trail.name}
+          >
+            <li>
+              <ListItem data={trail} />
+            </li>
+          </Link>
+        );
+      });
   }
-}) {
-  const data = results;
-  let listing = data;
 
-  if (selectedProvince && selectedProvince.length >= 1) {
-    listing = listing.filter(trail => trail.province === selectedProvince);
+  render() {
+    const { trails, selections } = this.context;
+    const list = filterList(trails, selections);
+
+    return (
+      <div className={styles.list}>
+        <ul>
+          {List.renderListItems(list)}
+        </ul>
+      </div>
+    );
   }
-
-  if (selectedDay && selectedDay.length >= 1) {
-    listing = listing.filter(trail => trail.duration.includes(selectedDay));
-  }
-
-  if (selectedLevel && selectedLevel.length >= 1) {
-    listing = listing.filter(trail => selectedLevel.includes(trail.level));
-  }
-
-  if (selectedComfort && selectedComfort.length >= 1) {
-    listing = listing.filter(trail => trail.comfort.includes(selectedComfort));
-  }
-
-  if (selectedService && selectedService.length >= 1) {
-    listing = listing.filter(trail => trail.services === selectedService);
-  }
-
-  return (
-    <div className={styles.list}>
-      <ul>
-        {listing
-          .filter((item, i, ar) => ar.indexOf(item) === i)
-          .map(trail => (
-            <Link
-              to={{
-                pathname: `/ssr/results/trail-details/${trail.name.replace(' ', '').replace('ö', 'o').toLowerCase()}`,
-                state: trail
-              }}
-              key={trail.name}
-            >
-              <li>
-                <ListItem data={trail} />
-              </li>
-            </Link>
-          ))}
-      </ul>
-    </div>
-  );
 }
-
-List.propTypes = listType.isRequired;
