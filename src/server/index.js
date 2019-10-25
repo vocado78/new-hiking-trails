@@ -8,7 +8,7 @@ import renderRoutes from './renderRoutes';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.static('public'));
 
 app.get('/api/trails', getTrails);
